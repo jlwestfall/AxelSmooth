@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 	public float walkMovementSpeed;
 	public float attackMovementSpeed;
 	public float projSpeed = 10;
-	public float p1XMin, p1XMax;
+	public float xMin, xMax;
 	public float zMin, zMax;
  	public float jumpPower = 1.0f;
 
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
 			rigidbody.position = new Vector3 
 									(
-										Mathf.Clamp(rigidbody.position.x, p1XMin, p1XMax),
+										Mathf.Clamp(rigidbody.position.x, xMin, xMax),
 										transform.position.y, 
 										Mathf.Clamp (rigidbody.position.z, zMin, zMax)
 									);
@@ -109,12 +109,10 @@ public class PlayerController : MonoBehaviour
 		if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Joystick1Button0))		
 		{
 			animator.SetBool("Attack1", true);
-
 		}
 		else
 		{
 			animator.SetBool("Attack1", false);
-	
 		}
 
 		if(Input.GetKeyUp(KeyCode.Joystick1Button1) || Input.GetMouseButtonUp(1))
@@ -153,30 +151,6 @@ public class PlayerController : MonoBehaviour
 				}
 			player.curPower -= powerCost; 
 		}
-	}
-
-	void PhaseConstraints()
-	{
-		if(levelManager.levelPhase == LevelManager.LevelPhase.CONTINUE)
-				{
-					rigidbody.position = new Vector3 
-									(
-										transform.position.x,
-										transform.position.y, 
-										Mathf.Clamp (rigidbody.position.z, zMin, zMax)
-									);
-				}
-
-		if(levelManager.levelPhase == LevelManager.LevelPhase.PHASE1)
-				{
-					rigidbody.position = new Vector3 
-									(
-										Mathf.Clamp(rigidbody.position.x, p1XMin, p1XMax),
-										transform.position.y, 
-										Mathf.Clamp (rigidbody.position.z, zMin, zMax)
-									);
-				}
-
 	}
 
 	void OnTriggerEnter(Collider other)

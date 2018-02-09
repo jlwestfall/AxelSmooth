@@ -6,7 +6,6 @@ public class PowerUps : MonoBehaviour
 {
 	Player player;
 
-	public int healthMod = 200;
 
 	void Start()
 	{
@@ -16,7 +15,7 @@ public class PowerUps : MonoBehaviour
 	{
 		if(other.gameObject.tag == "Pizza" && player.curHealth < player.maxHealth)
 		{
-			player.curHealth += healthMod;
+			player.curHealth += 200;
 
 			if(player.curHealth > player.maxHealth)
 				player.curHealth = player.maxHealth;
