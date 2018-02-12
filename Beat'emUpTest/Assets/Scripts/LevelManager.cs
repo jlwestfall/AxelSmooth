@@ -30,9 +30,6 @@ public class LevelManager : MonoBehaviour
 
     public int enemiesKilledInPhase;
 
-
-
-
     void Start()
     {
         levelPhase = LevelPhase.PHASE1;
@@ -46,7 +43,6 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        // -38 -27
         switch (levelPhase)
         {
             case (LevelPhase.PHASE1):
@@ -95,33 +91,6 @@ public class LevelManager : MonoBehaviour
                 else if (playerObject.transform.position.x <= -10)
                     playerController.xMax = -9f;
                 break;
-
-                /*case(LevelPhase.PHASE3):
-
-                    if(enemiesKilledInPhase >= 6)
-                    {
-                        spawnManager.phase3= false;
-                    }		
-
-                    if(EnemiesInGame.Count == 0)
-                    {
-                        enemiesKilledInPhase = 0;
-                        levelPhase = LevelPhase.PHASE4;
-                        spawnManager.phase4 = true;
-                    }
-
-                break;
-
-                case(LevelPhase.PHASE4):
-                break;
-
-                case(LevelPhase.PHASE5):
-                break;
-
-                case(LevelPhase.CONTINUE):
-                break;
-            }*/
-
         }
     }
 }

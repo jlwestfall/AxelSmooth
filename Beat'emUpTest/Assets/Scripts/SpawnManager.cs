@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-
-    public float spawnTime = 6f;
+    public float spawnTime = 15f;
     [Header("Spawn Phase 1")]
     public GameObject[] spawnPointsP1;
     [Header("Spawn Phase 2")]
@@ -28,16 +27,10 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
-        //phase1 = true;
-        StartCoroutine("Phase1", spawnTime);
+        phase1 = true;
+        StartCoroutine("Phasing", spawnTime);
     }
 
-    void Update()
-    {
- // has to be in a coroutine and find a way to switch between multiple. we forgot about the
- // fact that the coroutine was what was setting the spawn at a timer
-
-    }
 
     void Spawn(GameObject[] spawnPhase)
     {
@@ -51,25 +44,19 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator Phase1 (float spawnTime)
     {
+        yield return new WaitUntil(()=> phase1);
+
         while(phase1)
         {
             Spawn(spawnPointsP1);
             yield return new WaitForSeconds(spawnTime);
         }
-
-        while(phase2)
-        {
-            Spawn(spawnPointsP2);
-            yield return new WaitForSeconds(spawnTime);
-        }
-
-        
-
-        
     }
 
     IEnumerator Phase2 (float spawnTime)
     {
+        yield return new WaitUntil(()=> phase2);
+
         while(phase2)
         {
             Spawn(spawnPointsP2);
@@ -78,5 +65,12 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    IEnumerator Phasing(float spawnTime)
+    {
+        Coroutine a = StartCoroutine("Phase1", spawnTime);
+        Coroutine b = StartCoroutine("Phase2", spawnTime);
 
+        yield return a;
+        yield return b;
+    }
 }

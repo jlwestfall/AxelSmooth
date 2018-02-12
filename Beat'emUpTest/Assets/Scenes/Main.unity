@@ -1404,6 +1404,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 384840576}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &393615657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 393615658}
+  m_Layer: 0
+  m_Name: ZombieSpawner (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &393615658
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 393615657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.78, y: -0.26267385, z: -0.29}
+  m_LocalScale: {x: 0.51137, y: 0.51137, z: 0.51137}
+  m_Children: []
+  m_Father: {fileID: 1688391734}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &410096173 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4183257970016260, guid: 29d01f0244c763a438ef960744cafdcf,
@@ -4142,6 +4170,34 @@ Transform:
   m_Father: {fileID: 999329244}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1265885296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1265885297}
+  m_Layer: 0
+  m_Name: ZombieSpawner (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1265885297
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1265885296}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.09, y: -0.26267385, z: -0.97}
+  m_LocalScale: {x: 0.51137, y: 0.51137, z: 0.51137}
+  m_Children: []
+  m_Father: {fileID: 1688391734}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1266671700
 Prefab:
   m_ObjectHideFlags: 0
@@ -5369,7 +5425,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1612601763}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.85, y: -0.26267385, z: 1.38}
+  m_LocalPosition: {x: 10.86, y: -0.26267385, z: 1.38}
   m_LocalScale: {x: 0.51137, y: 0.51137, z: 0.51137}
   m_Children: []
   m_Father: {fileID: 1688391734}
@@ -5715,6 +5771,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1612601764}
+  - {fileID: 393615658}
+  - {fileID: 1265885297}
   m_Father: {fileID: 1835746905}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6292,7 +6350,9 @@ MonoBehaviour:
   - {fileID: 285182368}
   - {fileID: 781494965}
   spawnPointsP2:
-  - {fileID: 781494965}
+  - {fileID: 1612601763}
+  - {fileID: 393615657}
+  - {fileID: 1265885296}
   spawnPointsP3: []
   spawnPointsP4: []
   spawnPointsP5: []
