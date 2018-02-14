@@ -7,11 +7,9 @@ public class PlayerController : MonoBehaviour
 {
 
 	public float walkMovementSpeed;
-	public float attackMovementSpeed;
 	public float projSpeed = 10;
 	public float xMin, xMax;
 	public float zMin, zMax;
- 	public float jumpPower = 1.0f;
 
 	private float movementSpeed;
 	public bool facingRight;
@@ -98,14 +96,6 @@ public class PlayerController : MonoBehaviour
 			movementSpeed = walkMovementSpeed;
 
 
-		/*if(Input.GetButton("Jump") && isGrounded == true)
-		{
-			rigidbody.AddForce(jump * jumpPower, ForceMode.Acceleration);
-			isGrounded = false;
-		}*/
-
-		//animator.SetFloat("Speed", rigidbody.velocity.sqrMagnitude);
-
 		if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Joystick1Button0))		
 		{
 			animator.SetBool("Attack1", true);
@@ -160,14 +150,6 @@ public class PlayerController : MonoBehaviour
 			player.curHealth -= enemyBase.damage;
 		}
 
-	}
-
-	void OnCollisionStay(Collision colStay)
-	{
-		if(colStay.gameObject.tag == "Ground")
-		{
-			isGrounded = true;
-		}
 	}
 
 	public void AttackBoxOn()

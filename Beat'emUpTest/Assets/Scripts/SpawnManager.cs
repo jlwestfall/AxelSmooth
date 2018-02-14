@@ -21,7 +21,7 @@ public class SpawnManager : MonoBehaviour
     private LevelManager levelManager;
 
     //Spawn Switches.
-    public bool phase1, phase2, phase3, phase4, phase5, cont = false;
+    public bool phase1, phase2, phase3, phase4, phase5 = false;
 
 
     void Start()
@@ -65,12 +65,27 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    IEnumerator Phase3 (float spawnTime)
+    {
+        yield return new WaitUntil(()=> phase3);
+
+        while(phase2)
+        {
+            Spawn(spawnPointsP2);
+            print("asdlkfjasd;lkfjasdsad;glkg");
+            yield return new WaitForSeconds(spawnTime);
+        }
+    }
+    
+
     IEnumerator Phasing(float spawnTime)
     {
         Coroutine a = StartCoroutine("Phase1", spawnTime);
         Coroutine b = StartCoroutine("Phase2", spawnTime);
+        Coroutine c = StartCoroutine("Phase3", spawnTime);
 
         yield return a;
         yield return b;
+        yield return c;
     }
 }

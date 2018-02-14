@@ -29,6 +29,9 @@ public class LevelManager : MonoBehaviour
 
 
     public int enemiesKilledInPhase;
+    public bool phase1, phase2, phase3, phase4, phase5 = false;
+
+    private int phaseCounter = 1;
 
     void Start()
     {
@@ -51,8 +54,8 @@ public class LevelManager : MonoBehaviour
                 smoothCamera.following = false;
                 spawnManager.phase1 = true;
 
-                if (enemiesKilledInPhase >= 2)
-                {        
+                if (enemiesKilledInPhase >= 1)
+                {
                     spawnManager.phase1 = false;
                     if (EnemiesInGame.Count == 0)
                     {
@@ -69,7 +72,7 @@ public class LevelManager : MonoBehaviour
 
                 spawnManager.phase2 = true;
 
-                if (enemiesKilledInPhase >= 6)
+                if (enemiesKilledInPhase >= 1)
                 {
                     spawnManager.phase2 = false;
                     if (EnemiesInGame.Count == 0)
@@ -80,17 +83,54 @@ public class LevelManager : MonoBehaviour
                 }
                 break;
 
+            case (LevelPhase.PHASE3):
+                playerController.xMin = 13f;
+                playerController.xMax = 25f;
+                smoothCamera.following = false;
+
+                spawnManager.phase3 = true;
+
+                if (enemiesKilledInPhase >= 1)
+                {
+                    spawnManager.phase2 = false;
+                    if (EnemiesInGame.Count == 0)
+                    {
+                        enemiesKilledInPhase = 0;
+                        levelPhase = LevelPhase.CONTINUE;
+                    }
+                }
+                break;
+
+
             case (LevelPhase.CONTINUE):
                 //playerController.xMax = -9f;
                 smoothCamera.following = true;
 
-                if (playerObject.transform.position.x >= -10)
+
+                //Phase1 Cont to Phase2
+                if (playerObject.transform.position.x >= -10 && phaseCounter == 1)
                 {
+                    phaseCounter++;
                     levelPhase = LevelPhase.PHASE2;
                 }
-                else if (playerObject.transform.position.x <= -10)
-                    playerController.xMax = -9f;
+                else if (playerObject.transform.position.x < -10 && phaseCounter == 1)
+                    playerController.xMax = -9;
+
+                //Phase2 Cont to
+                else if (playerObject.transform.position.x >= 20 && phaseCounter == 2)
+                {
+
+                    phaseCounter++;
+                    levelPhase = LevelPhase.PHASE3;
+                }
+                else if (playerObject.transform.position.x < 20 && phaseCounter == 2)
+                    playerController.xMax = 21;
+
                 break;
         }
+
+
     }
+
+  
 }
