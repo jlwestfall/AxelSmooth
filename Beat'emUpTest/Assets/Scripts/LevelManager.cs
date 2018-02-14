@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
 
     public LevelPhase levelPhase;
     PlayerController playerController;
+    PlayerController playerTwoController;
     GameObject playerObject;
 
     public List<GameObject> PlayersInGame = new List<GameObject>();
@@ -35,6 +36,8 @@ public class LevelManager : MonoBehaviour
         levelPhase = LevelPhase.PHASE1;
         playerObject = GameManager.gm.player.gameObject;
         playerController = GameManager.gm.player.GetComponent<PlayerController>();
+        playerTwoController = GameManager.gm.player2.GetComponent<PlayerController>();
+        
         //EnemiesInGame.AddRange(GameObject.FindGameObjectsWithTag("Zombie"));
         PlayersInGame.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         spawnManager = GameManager.gm.spawnManager.GetComponent<SpawnManager>();
@@ -46,8 +49,8 @@ public class LevelManager : MonoBehaviour
         switch (levelPhase)
         {
             case (LevelPhase.PHASE1):
-                playerController.xMin = -38f;
-                playerController.xMax = -27f;
+                BoundsUpdate(-38f, -27f);
+
                 smoothCamera.following = false;
                 spawnManager.phase1 = true;
 
@@ -89,8 +92,17 @@ public class LevelManager : MonoBehaviour
                     levelPhase = LevelPhase.PHASE2;
                 }
                 else if (playerObject.transform.position.x <= -10)
-                    playerController.xMax = -9f;
+
+                    BoundsUpdate(playerController.xMin, -9f);
                 break;
         }
+    }
+
+    public void BoundsUpdate(float minNum, float maxNum){
+        playerController.xMin = minNum;
+        playerController.xMax = maxNum;
+
+        playerTwoController.xMin = minNum;
+        playerTwoController.xMax = maxNum;
     }
 }
