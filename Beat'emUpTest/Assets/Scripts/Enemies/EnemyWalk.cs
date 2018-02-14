@@ -42,8 +42,7 @@ public class EnemyWalk : MonoBehaviour
 
 	void GoToPlayer()
 	{
-		Transform closestPlayerPosition = ClosestPlayer();
-		navMeshAgent.SetDestination(closestPlayerPosition.position);
+		navMeshAgent.SetDestination(GameManager.gm.player.transform.position);
 		navMeshAgent.updateRotation = false;
 
 		if(navMeshAgent.velocity.x > 0 && facingLeft)
@@ -59,15 +58,5 @@ public class EnemyWalk : MonoBehaviour
 		Vector3 thisScale = transform.localScale;
 		thisScale.x *= -1;
 		transform.localScale = thisScale;
-	}
-
-	public Transform ClosestPlayer(){
-		float playerOneDistance = Vector3.Distance(transform.position, GameManager.gm.player.transform.position);
-		float playerTwoDistance = Vector3.Distance(transform.position, GameManager.gm.player2.transform.position);
-		if(playerOneDistance < playerTwoDistance){
-			return GameManager.gm.player.transform;
-		}else{
-			return GameManager.gm.player2.transform;
-		}
 	}
 }
