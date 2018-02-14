@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour 
 {
-
+	public PlayerSlot playerSlot;
+	public KeyCode meleeInput;
+	public KeyCode shootInput;
 	public float walkMovementSpeed;
 	public float projSpeed = 10;
 	public float xMin, xMax;
@@ -29,13 +31,23 @@ public class PlayerController : MonoBehaviour
 	 EnemyBase enemyBase;
 	 LevelManager levelManager;
 
+	 float moveHorizontal;
+	float moveVertical;
 
+	public enum PlayerSlot{
+		Player1, Player2
+	}
+	
 	// Use this for initialization
 	void Start () 
 	{
 		rigidbody = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
-		player = GameManager.gm.player.GetComponent<Player>();
+		switch(playerSlot){
+			case PlayerSlot.Player1: player = GameManager.gm.player.GetComponent<Player>(); break;
+			case PlayerSlot.Player2: player = GameManager.gm.player2.GetComponent<Player>(); break;
+		}
+		player = GetComponent<Player>();
 		levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
 		enemyBase = new EnemyBase();
 		movementSpeed = walkMovementSpeed;
@@ -60,8 +72,16 @@ public class PlayerController : MonoBehaviour
 	void Move()
 	{
 		{
-			float moveHorizontal = Input.GetAxis ("Horizontal");
-			float moveVertical = Input.GetAxis("Vertical");
+			
+			
+			switch(playerSlot){
+				case PlayerSlot.Player1: 
+					moveHorizontal = Input.GetAxis ("Horizontal");
+					moveVertical = Input.GetAxis ("Vertical"); break;
+				case PlayerSlot.Player2:
+					moveHorizontal = Input.GetAxis ("Horizontal2");
+					moveVertical = Input.GetAxis ("Vertical2"); break;
+			}
 
 			Vector3 movement = new Vector3 (moveHorizontal, 0f, moveVertical);
 
@@ -96,7 +116,19 @@ public class PlayerController : MonoBehaviour
 			movementSpeed = walkMovementSpeed;
 
 
+<<<<<<< HEAD
 		if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Joystick1Button0))		
+=======
+		/*if(Input.GetButton("Jump") && isGrounded == true)
+		{
+			rigidbody.AddForce(jump * jumpPower, ForceMode.Acceleration);
+			isGrounded = false;
+		}*/
+
+		//animator.SetFloat("Speed", rigidbody.velocity.sqrMagnitude);
+
+		if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(meleeInput))		
+>>>>>>> b818124cab4372c652e14c7122c7fb9a6810795f
 		{
 			animator.SetBool("Attack1", true);
 		}
@@ -105,7 +137,7 @@ public class PlayerController : MonoBehaviour
 			animator.SetBool("Attack1", false);
 		}
 
-		if(Input.GetKeyUp(KeyCode.Joystick1Button1) || Input.GetMouseButtonUp(1))
+		if(Input.GetKeyUp(shootInput) || Input.GetMouseButtonUp(1))
 			animator.SetBool("Shoot", true);
 		else
 			animator.SetBool("Shoot", false);	
