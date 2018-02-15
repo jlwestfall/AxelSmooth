@@ -60,7 +60,6 @@ public class SpawnManager : MonoBehaviour
         while(phase2)
         {
             Spawn(spawnPointsP2);
-            print("asdlkfjasd;lkfjasdsad;glkg");
             yield return new WaitForSeconds(spawnTime);
         }
     }
@@ -69,10 +68,9 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitUntil(()=> phase3);
 
-        while(phase2)
+        while(phase3)
         {
             Spawn(spawnPointsP2);
-            print("asdlkfjasd;lkfjasdsad;glkg");
             yield return new WaitForSeconds(spawnTime);
         }
     }
