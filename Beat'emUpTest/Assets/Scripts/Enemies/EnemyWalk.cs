@@ -42,7 +42,18 @@ public class EnemyWalk : MonoBehaviour
 
 	void GoToPlayer()
 	{
-		navMeshAgent.SetDestination(GameManager.gm.player.transform.position);
+		float lowDist = 1000;
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		Vector3 newTarget = transform.position;
+
+		foreach(GameObject p in players){
+			float dist = Vector3.Distance(transform.position, p.transform.position);
+			if(dist < lowDist){
+				newTarget = p.transform.position;
+				lowDist = dist;
+			}
+		}
+		navMeshAgent.SetDestination(newTarget);
 		navMeshAgent.updateRotation = false;
 
 		if(navMeshAgent.velocity.x > 0 && facingLeft)
