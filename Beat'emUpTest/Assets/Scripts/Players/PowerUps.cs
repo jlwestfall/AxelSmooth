@@ -9,7 +9,11 @@ public class PowerUps : MonoBehaviour
 
 	void Start()
 	{
-		player = GameManager.gm.player.GetComponent<Player>();
+		if(this.gameObject.name == "Player")
+			player = GameManager.gm.player.GetComponent<Player>();
+		if(this.gameObject.name == "Player2")
+			player = GameManager.gm.player2.GetComponent<Player>();
+
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -22,9 +26,16 @@ public class PowerUps : MonoBehaviour
 			Destroy(other.gameObject);
 		}
 
-		if(other.gameObject.tag == "Beer")
+		if(other.gameObject.tag == "Beer" && this.gameObject.name == "Player")
 		{
-			GameManager.gm.score.score += 200;
+			GameManager.gm.score.scoreP1 += 200;
+
+			Destroy(other.gameObject);
+		}
+
+		if(other.gameObject.tag == "Beer" && this.gameObject.name == "Player2")
+		{
+			GameManager.gm.score.scoreP2 += 200;
 
 			Destroy(other.gameObject);
 		}

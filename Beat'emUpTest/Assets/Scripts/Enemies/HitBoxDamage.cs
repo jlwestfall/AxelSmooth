@@ -42,9 +42,10 @@ public class HitBoxDamage : MonoBehaviour
 	{
 		if(other.gameObject.tag == "Hit")
 		{
-			Debug.Log("something?");
 			playerController.hitEffectSwitch = true;
 			enemyBase.health -= playerScript.damage;
+
+
 		}
 	}	
 }

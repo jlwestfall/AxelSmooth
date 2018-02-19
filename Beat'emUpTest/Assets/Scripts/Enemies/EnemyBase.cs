@@ -24,7 +24,7 @@ public class EnemyBase : MonoBehaviour
 	{
 		if(health <= 0)
 		{	
-			GameManager.gm.score.score += 100;
+			//GameManager.gm.score.score += 100;
 			levelManager.enemiesKilledInPhase++;
 			Debug.Log(levelManager.enemiesKilledInPhase);
 			levelManager.EnemiesInGame.Remove(this.gameObject);

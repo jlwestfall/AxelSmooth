@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
 
     public List<GameObject> PlayersInGame = new List<GameObject>();
     public List<GameObject> EnemiesInGame = new List<GameObject>();
-    //public List<GameObject> SpawnPhases = new List<GameObject>();f
+    //public List<GameObject> SpawnPhases = new List<GameObject>();
 
     SpawnManager spawnManager;
 
@@ -40,7 +40,6 @@ public class LevelManager : MonoBehaviour
         playerController = GameManager.gm.player.GetComponent<PlayerController>();
         playerTwoController = GameManager.gm.player2.GetComponent<PlayerController>();
         
-        //EnemiesInGame.AddRange(GameObject.FindGameObjectsWithTag("Zombie"));
         PlayersInGame.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         spawnManager = GameManager.gm.spawnManager.GetComponent<SpawnManager>();
         smoothCamera = camera.GetComponent<SmoothCameraFollow>();

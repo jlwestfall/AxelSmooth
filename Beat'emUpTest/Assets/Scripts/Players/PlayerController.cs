@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectile;
     public GameObject projSpawner;
+    public GameObject playerObj;
+    public GameObject playerColObj;
     Rigidbody rigidbody;
     Animator animator;
     Player player;
@@ -35,10 +37,11 @@ public class PlayerController : MonoBehaviour
     float moveHorizontalPlayer2;
     float moveVerticalPlayer2;
 
-    public enum PlayerChoice{
+    public enum PlayerChoice
+    {
         PlayerOne, PlayerTwo
     }
-    
+
 
     void Start()
     {
@@ -53,41 +56,54 @@ public class PlayerController : MonoBehaviour
 
         Physics.gravity = new Vector3(0, -50.0f, 0);
 
+        //trying to ignore collision on with P1 && P2
+        //Physics.IgnoreCollision(playerObj.GetComponent<Collider>(), GetComponent<Collider>());
+
         if (currPlayer == PlayerChoice.PlayerOne)
         {
             player = GameManager.gm.player.GetComponent<Player>();
+            playerObj = GameManager.gm.player;
             p1 = true;
-			p2 = false;
+            p2 = false;
         }
 
         else if (currPlayer == PlayerChoice.PlayerTwo)
         {
             player = GameManager.gm.player2.GetComponent<Player>();
+            playerObj = GameManager.gm.player2;
             p2 = true;
-			p1 = false;
+            p1 = false;
         }
 
-        
+
     }
     void Update()
     {
         Move();
 
-        if (player.curHealth <= 0)
+        if(player.curHealth <= 0)
+        {
+            levelManager.PlayersInGame.Remove(this.gameObject);
+            this.gameObject.SetActive(false);
+        }
+
+        if (levelManager.PlayersInGame.Count == 0)
             SceneManager.LoadScene("GameOver");
+        
+            
     }
 
     void Move()
     {
-        switch(currPlayer)
+        switch (currPlayer)
         {
-            case (PlayerChoice.PlayerOne): 
-                player = GameManager.gm.player.GetComponent<Player>(); 
+            case (PlayerChoice.PlayerOne):
+                player = GameManager.gm.player.GetComponent<Player>();
                 moveHorizontalPlayer1 = Input.GetAxis("Horizontal_P1");
                 moveVerticalPlayer1 = Input.GetAxis("Vertical_P1"); break;
 
-            case (PlayerChoice.PlayerTwo): 
-                player = GameManager.gm.player2.GetComponent<Player>(); 
+            case (PlayerChoice.PlayerTwo):
+                player = GameManager.gm.player2.GetComponent<Player>();
                 moveHorizontalPlayer2 = Input.GetAxis("Horizontal_P2");
                 moveVerticalPlayer2 = Input.GetAxis("Vertical_P2"); break;
         }
@@ -125,101 +141,102 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void PlayerWork(){
-        switch(currPlayer){
-            case(PlayerChoice.PlayerOne): 
+    public void PlayerWork()
+    {
+        switch (currPlayer)
+        {
+            case (PlayerChoice.PlayerOne):
                 Vector3 movement = new Vector3(moveHorizontalPlayer1, 0f, moveVerticalPlayer1);
 
-            rigidbody.velocity = movement * movementSpeed;
+                rigidbody.velocity = movement * movementSpeed;
 
-            if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
-                animator.SetBool("Walking", true);
-            else
-                animator.SetBool("Walking", false);
-
-
-            rigidbody.position = new Vector3
-                                    (
-                                        Mathf.Clamp(rigidbody.position.x, xMin, xMax),
-                                        transform.position.y,
-                                        Mathf.Clamp(rigidbody.position.z, zMin, zMax)
-                                    );
+                if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
+                    animator.SetBool("Walking", true);
+                else
+                    animator.SetBool("Walking", false);
 
 
-            if (moveHorizontalPlayer1 > 0 && !facingRight)
-                Flip();
-            else if (moveHorizontalPlayer1< 0 && facingRight)
-                Flip();
+                rigidbody.position = new Vector3
+                                        (
+                                            Mathf.Clamp(rigidbody.position.x, xMin, xMax),
+                                            transform.position.y,
+                                            Mathf.Clamp(rigidbody.position.z, zMin, zMax)
+                                        );
 
-            movementSpeed = walkMovementSpeed;
+
+                if (moveHorizontalPlayer1 > 0 && !facingRight)
+                    Flip();
+                else if (moveHorizontalPlayer1 < 0 && facingRight)
+                    Flip();
+
+                movementSpeed = walkMovementSpeed;
 
 
-            if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(meleeInput))
-            {
-                animator.SetBool("Attack1", true);
-            }
-            else
-            {
-                animator.SetBool("Attack1", false);
-            }
+                if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(meleeInput))
+                {
+                    animator.SetBool("Attack1", true);
+                }
+                else
+                {
+                    animator.SetBool("Attack1", false);
+                }
 
-            if (Input.GetKeyUp(shootInput) || Input.GetMouseButtonUp(1))
-                animator.SetBool("Shoot", true);
-            else
-                animator.SetBool("Shoot", false);
+                if (Input.GetKeyUp(shootInput) || Input.GetMouseButtonUp(1))
+                    animator.SetBool("Shoot", true);
+                else
+                    animator.SetBool("Shoot", false);
                 break;
             //----------------------------------------------------------------------------
-            case (PlayerChoice.PlayerTwo): 
-          
-
-            Vector3 movement2 = new Vector3(moveHorizontalPlayer2, 0f, moveVerticalPlayer2);
-
-            rigidbody.velocity = movement2 * movementSpeed;
-
-            if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
-                animator.SetBool("Walking", true);
-            else
-                animator.SetBool("Walking", false);
+            case (PlayerChoice.PlayerTwo):
 
 
-            rigidbody.position = new Vector3
-                                    (
-                                        Mathf.Clamp(rigidbody.position.x, xMin, xMax),
-                                        transform.position.y,
-                                        Mathf.Clamp(rigidbody.position.z, zMin, zMax)
-                                    );
+                Vector3 movement2 = new Vector3(moveHorizontalPlayer2, 0f, moveVerticalPlayer2);
+
+                rigidbody.velocity = movement2 * movementSpeed;
+
+                if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
+                    animator.SetBool("Walking", true);
+                else
+                    animator.SetBool("Walking", false);
 
 
-            if (moveHorizontalPlayer2 > 0 && !facingRight)
-                Flip();
-            else if (moveHorizontalPlayer2 < 0 && facingRight)
-                Flip();
+                rigidbody.position = new Vector3
+                                        (
+                                            Mathf.Clamp(rigidbody.position.x, xMin, xMax),
+                                            transform.position.y,
+                                            Mathf.Clamp(rigidbody.position.z, zMin, zMax)
+                                        );
 
-            movementSpeed = walkMovementSpeed;
+
+                if (moveHorizontalPlayer2 > 0 && !facingRight)
+                    Flip();
+                else if (moveHorizontalPlayer2 < 0 && facingRight)
+                    Flip();
+
+                movementSpeed = walkMovementSpeed;
 
 
-            if (Input.GetKeyUp(KeyCode.N))
-            {
-                animator.SetBool("Attack1", true);
-            }
-            else
-            {
-                animator.SetBool("Attack1", false);
-            }
+                if (Input.GetKeyUp(KeyCode.N))
+                {
+                    animator.SetBool("Attack1", true);
+                }
+                else
+                {
+                    animator.SetBool("Attack1", false);
+                }
 
-            if (Input.GetKeyUp(KeyCode.B))
-                animator.SetBool("Shoot", true);
-            else
-                animator.SetBool("Shoot", false);
-            break;
+                if (Input.GetKeyUp(KeyCode.B))
+                    animator.SetBool("Shoot", true);
+                else
+                    animator.SetBool("Shoot", false);
+                break;
         }
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PlayerHit")
-        {
             player.curHealth -= enemyBase.damage;
-        }
+    
 
     }
 
@@ -242,5 +259,5 @@ public class PlayerController : MonoBehaviour
         Projectile(10);
     }
 
-    
+
 }

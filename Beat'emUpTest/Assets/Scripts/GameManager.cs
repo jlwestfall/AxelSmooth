@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public GameObject levelManager;
 	[Header("Spawn Manager")]
 	public GameObject spawnManager;
+	public GameObject uiManager;
 	
 	void Awake()
 	{

@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class HealthPower : MonoBehaviour
 {
+    public enum PlayerChoice
+    {
+        PLAYER1, PLAYER2
+    }
+
+    public PlayerChoice playerChoice;
+
     [SerializeField]
     private float fillAmount;
     [SerializeField]
@@ -17,14 +24,19 @@ public class HealthPower : MonoBehaviour
     private float maxPower;
     private float curPower;
 
+
     // Use this for initialization
     void Start()
     {
-        player = GameManager.gm.player.GetComponent<Player>();
-
-
-
-
+        switch (playerChoice)
+        {
+            case (PlayerChoice.PLAYER1):
+                player = GameManager.gm.player.GetComponent<Player>();
+                break;
+            case (PlayerChoice.PLAYER2):
+                player = GameManager.gm.player2.GetComponent<Player>();
+                break;
+        }
     }
 
     // Update is called once per frame

@@ -10,5 +10,6 @@ public class Player : MonoBehaviour
 	public int curPower;
 	public int damage = 25;
 	public int projDamage = 75;
+
 }
 
