@@ -20,7 +20,7 @@ public class CollidingSwitch : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.tag == "Player")
+		if(other.gameObject.tag == "HitBox")
 			inRange = true;
 		else
 			inRange = false;

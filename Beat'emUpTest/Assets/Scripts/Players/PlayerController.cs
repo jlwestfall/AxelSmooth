@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public PlayerChoice currPlayer;
     public KeyCode meleeInput;
     public KeyCode shootInput;
+    public KeyCode dodgeInput;
     public float walkMovementSpeed;
     public float projSpeed = 10;
     public float xMin, xMax;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projSpawner;
     public GameObject playerObj;
     public GameObject playerColObj;
+    public GameObject playerHitBox;
     Rigidbody rigidbody;
     Animator animator;
     Player player;
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+      
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
@@ -99,13 +102,18 @@ public class PlayerController : MonoBehaviour
         {
             case (PlayerChoice.PlayerOne):
                 player = GameManager.gm.player.GetComponent<Player>();
-                moveHorizontalPlayer1 = Input.GetAxis("Horizontal_P1");
-                moveVerticalPlayer1 = Input.GetAxis("Vertical_P1"); break;
+                if(animator.GetBool("dodge") == false){
+                    moveHorizontalPlayer1 = Input.GetAxis("Horizontal_P1");
+                    moveVerticalPlayer1 = Input.GetAxis("Vertical_P1"); 
+                }
+                break;
 
             case (PlayerChoice.PlayerTwo):
-                player = GameManager.gm.player2.GetComponent<Player>();
-                moveHorizontalPlayer2 = Input.GetAxis("Horizontal_P2");
-                moveVerticalPlayer2 = Input.GetAxis("Vertical_P2"); break;
+                player = GameManager.gm.player2.GetComponent<Player>();  
+                if(animator.GetBool("dodge") == false){
+                    moveHorizontalPlayer2 = Input.GetAxis("Horizontal_P2");
+                    moveVerticalPlayer2 = Input.GetAxis("Vertical_P2"); 
+                } break;
         }
         PlayerWork();
     }
@@ -148,75 +156,57 @@ public class PlayerController : MonoBehaviour
             case (PlayerChoice.PlayerOne):
                 Vector3 movement = new Vector3(moveHorizontalPlayer1, 0f, moveVerticalPlayer1);
 
-                rigidbody.velocity = movement * movementSpeed;
+                if(!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
+                    rigidbody.velocity = movement * movementSpeed;
 
-                if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
-                    animator.SetBool("Walking", true);
-                else
-                    animator.SetBool("Walking", false);
-
-
-                rigidbody.position = new Vector3
-                                        (
-                                            Mathf.Clamp(rigidbody.position.x, xMin, xMax),
-                                            transform.position.y,
-                                            Mathf.Clamp(rigidbody.position.z, zMin, zMax)
-                                        );
-
-
-                if (moveHorizontalPlayer1 > 0 && !facingRight)
+                if(!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge")){
+                           if (moveHorizontalPlayer1 > 0 && !facingRight)
                     Flip();
                 else if (moveHorizontalPlayer1 < 0 && facingRight)
                     Flip();
-
-                movementSpeed = walkMovementSpeed;
-
-
-                if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(meleeInput))
-                {
-                    animator.SetBool("Attack1", true);
                 }
-                else
-                {
-                    animator.SetBool("Attack1", false);
-                }
-
-                if (Input.GetKeyUp(shootInput) || Input.GetMouseButtonUp(1))
-                    animator.SetBool("Shoot", true);
-                else
-                    animator.SetBool("Shoot", false);
                 break;
-            //----------------------------------------------------------------------------
+
             case (PlayerChoice.PlayerTwo):
 
-
                 Vector3 movement2 = new Vector3(moveHorizontalPlayer2, 0f, moveVerticalPlayer2);
+                if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+                    rigidbody.velocity = movement2 * movementSpeed;
+  
+                if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge")){
+                     if (moveHorizontalPlayer2 > 0 && !facingRight)
+                    Flip();
+                else if (moveHorizontalPlayer2 < 0 && facingRight)
+                    Flip();
+                }
+                break; 
+        }
 
-                rigidbody.velocity = movement2 * movementSpeed;
+            movementSpeed = walkMovementSpeed;
 
-                if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
+            if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
                     animator.SetBool("Walking", true);
                 else
                     animator.SetBool("Walking", false);
 
+        rigidbody.position = new Vector3(Mathf.Clamp(rigidbody.position.x, xMin, xMax), transform.position.y, Mathf.Clamp(rigidbody.position.z, zMin, zMax));
 
-                rigidbody.position = new Vector3
-                                        (
-                                            Mathf.Clamp(rigidbody.position.x, xMin, xMax),
-                                            transform.position.y,
-                                            Mathf.Clamp(rigidbody.position.z, zMin, zMax)
-                                        );
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(dodgeInput))//Dodge stuff
+                {
+                    animator.SetBool("dodge", true);
 
+                }else{
+                    animator.SetBool("dodge", false);
+                }
+                
 
-                if (moveHorizontalPlayer2 > 0 && !facingRight)
-                    Flip();
-                else if (moveHorizontalPlayer2 < 0 && facingRight)
-                    Flip();
+                if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
+                    animator.SetBool("Shoot", true);
+                else
+                    animator.SetBool("Shoot", false);
+                
 
-                movementSpeed = walkMovementSpeed;
-
-
-                if (Input.GetKeyUp(KeyCode.N))
+                if (Input.GetKeyUp(KeyCode.N) || Input.GetKeyUp(meleeInput))//Keyboard
                 {
                     animator.SetBool("Attack1", true);
                 }
@@ -224,18 +214,23 @@ public class PlayerController : MonoBehaviour
                 {
                     animator.SetBool("Attack1", false);
                 }
-
-                if (Input.GetKeyUp(KeyCode.B))
-                    animator.SetBool("Shoot", true);
-                else
-                    animator.SetBool("Shoot", false);
-                break;
-        }
+                
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge")){
+            playerHitBox.SetActive(false);
+            }          
+            else{
+            playerHitBox.SetActive(true);
+            }
+        
+             
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PlayerHit")
+        if (other.gameObject.tag == "PlayerHit" && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
             player.curHealth -= enemyBase.damage;
+
+        if (other.gameObject.tag == "PlayerHit" && animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+            print("Dodged enemy attack!");
     
 
     }
