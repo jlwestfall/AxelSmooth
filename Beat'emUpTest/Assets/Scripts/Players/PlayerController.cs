@@ -199,7 +199,6 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("dodge", false);
                 }
                 
-
                 if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
                     animator.SetBool("Shoot", true);
                 else
