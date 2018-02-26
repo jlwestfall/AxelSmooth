@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     PlayerController playerController;
     PlayerController playerTwoController;
     GameObject playerObject;
+    GameObject player2Object;
 
     public List<GameObject> PlayersInGame = new List<GameObject>();
     public List<GameObject> EnemiesInGame = new List<GameObject>();
@@ -37,9 +38,10 @@ public class LevelManager : MonoBehaviour
     {
         levelPhase = LevelPhase.PHASE1;
         playerObject = GameManager.gm.player.gameObject;
+        player2Object = GameManager.gm.player2.gameObject;
         playerController = GameManager.gm.player.GetComponent<PlayerController>();
         playerTwoController = GameManager.gm.player2.GetComponent<PlayerController>();
-        
+
         PlayersInGame.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         spawnManager = GameManager.gm.spawnManager.GetComponent<SpawnManager>();
         smoothCamera = camera.GetComponent<SmoothCameraFollow>();
@@ -107,26 +109,33 @@ public class LevelManager : MonoBehaviour
                 smoothCamera.following = true;
 
                 //Phase1 Cont to Phase2
-                if (playerObject.transform.position.x >= -10 && phaseCounter == 1)
+                if (playerObject.transform.position.x >= -10 && phaseCounter == 1 ||
+                 player2Object.transform.position.x >= -10 && phaseCounter == 1)
                 {
                     phaseCounter++;
                     levelPhase = LevelPhase.PHASE2;
                 }
-                else if (playerObject.transform.position.x < -10 && phaseCounter == 1)
+                else if (playerObject.transform.position.x < -10 && phaseCounter == 1 ||
+                 player2Object.transform.position.x < -10 && phaseCounter == 1)
                 {
                     playerController.xMax = -9;
                     playerTwoController.xMax = -9;
                 }
 
                 //Phase2 Cont to Phase3
-                else if (playerObject.transform.position.x >= 20 && phaseCounter == 2)
+                else if (playerObject.transform.position.x >= 20 && phaseCounter == 2 ||
+                 player2Object.transform.position.x >= 20 && phaseCounter == 2)
                 {
                     phaseCounter++;
                     levelPhase = LevelPhase.PHASE3;
                 }
-                else if (playerObject.transform.position.x < 20 && phaseCounter == 2)
+                else if (playerObject.transform.position.x < 20 ||
+                 player2Object.transform.position.x < 20 && phaseCounter == 2)
+                {
                     playerController.xMax = 21;
                     playerTwoController.xMax = 21;
+                }
+
 
                 break;
         }
@@ -134,7 +143,7 @@ public class LevelManager : MonoBehaviour
 
     }
 
-  
+
     public void BoundsUpdate(float minNum, float maxNum)
     {
         playerController.xMin = minNum;

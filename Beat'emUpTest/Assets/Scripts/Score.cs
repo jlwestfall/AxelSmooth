@@ -10,7 +10,8 @@ public class Score : MonoBehaviour
 	public int scoreP2;
 	public string scoreString;
 	
-	public Text scoreText;
+	public Text scoreTextP1;
+	public Text scoreTextP2;
 
 	void Start()
 	{
@@ -22,12 +23,12 @@ public class Score : MonoBehaviour
 		if(this.gameObject.name == "PlayerScore1")
 		{
 			scoreString = scoreP1.ToString();
-			scoreText.text = scoreString;
+			scoreTextP1.text = scoreString;
 		}
 		else if(this.gameObject.name == "PlayerScore2")
 		{
 			scoreString = scoreP2.ToString();
-			scoreText.text = scoreString;
+			scoreTextP2.text = scoreString;
 		}
 	}
 }
