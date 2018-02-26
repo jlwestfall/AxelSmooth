@@ -1,28 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class CollidingSwitch : MonoBehaviour 
+public class CollidingSwitch : MonoBehaviour
 {
-	public bool inRange;
+    public bool inRange;
+    public GameObject enemy;
 
-	// Use this for initialization
-	void Start () 
-	{
-		inRange = false;
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-	}
+    NavMeshAgent navMeshAgent;
 
-	void OnTriggerEnter(Collider other)
-	{
-		if(other.gameObject.tag == "HitBox")
-			inRange = true;
-		else
-			inRange = false;
-	}
+
+    // Use this for initialization
+    void Start()
+    {
+        navMeshAgent = enemy.GetComponent<NavMeshAgent>();
+        inRange = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "HitBox")
+        {
+            inRange = true;
+            navMeshAgent.enabled = false;
+        }
+        else
+        {
+            inRange = false;
+            navMeshAgent.enabled = true;
+        }
+
+
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletCleanUp : MonoBehaviour 
 {
 
-	private float time = 2f;
+	private float time = 5f;
 	
 
 	void Update () 
