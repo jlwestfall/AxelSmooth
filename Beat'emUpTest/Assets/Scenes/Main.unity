@@ -3505,6 +3505,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1734422191545604, guid: 3fdccb3a59a12184caac364725d815bd, type: 2}
+      propertyPath: m_TagString
+      value: HitBox
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fdccb3a59a12184caac364725d815bd, type: 2}
   m_IsPrefabParent: 0
