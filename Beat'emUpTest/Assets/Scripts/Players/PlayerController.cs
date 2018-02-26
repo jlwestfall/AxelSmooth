@@ -197,9 +197,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(dodgeInput))//Dodge stuff
             animator.SetBool("dodge", true);
-        else
+        else{
             animator.SetBool("dodge", false);
-
+        }
 
                 }
                 else
