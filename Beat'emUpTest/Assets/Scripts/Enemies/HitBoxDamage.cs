@@ -11,6 +11,7 @@ public class HitBoxDamage : MonoBehaviour
 
 		EnemyBase enemyBase;
 
+
 	void Start()
 	{
 		playerScript = GameManager.gm.player.GetComponent<Player>();
@@ -45,7 +46,7 @@ public class HitBoxDamage : MonoBehaviour
 			playerController.hitEffectSwitch = true;
 			enemyBase.health -= playerScript.damage;
 
-
+			
 		}
 	}	
 }
