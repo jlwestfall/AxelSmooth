@@ -163,6 +163,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 movement = new Vector3(moveHorizontalPlayer1, 0f, moveVerticalPlayer1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 
                     rigidbody.velocity = movement * movementSpeed;
 
@@ -176,6 +177,11 @@ public class PlayerController : MonoBehaviour
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
                     rigidbody.velocity = movement * movementSpeed;
 
+=======
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
+                    rigidbody.velocity = movement * movementSpeed;
+
+>>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
                 {
                     if (moveHorizontalPlayer1 > 0 && !facingRight)
@@ -190,6 +196,7 @@ public class PlayerController : MonoBehaviour
 
                 Vector3 movement2 = new Vector3(moveHorizontalPlayer2, 0f, moveVerticalPlayer2);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if(!rolling)
                     rigidbody.velocity = movement2 * movementSpeed;
   
@@ -201,6 +208,10 @@ public class PlayerController : MonoBehaviour
 =======
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
                     rigidbody.velocity = movement2 * movementSpeed;
+=======
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+                    rigidbody.velocity = movement2 * movementSpeed;
+>>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
 
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
                 {
@@ -208,6 +219,9 @@ public class PlayerController : MonoBehaviour
                         Flip();
                     else if (moveHorizontalPlayer2 < 0 && facingRight)
                         Flip();
+<<<<<<< HEAD
+>>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
+=======
 >>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
                 }
                 break;
@@ -223,6 +237,7 @@ public class PlayerController : MonoBehaviour
         rigidbody.position = new Vector3(Mathf.Clamp(rigidbody.position.x, xMin, xMax), transform.position.y, Mathf.Clamp(rigidbody.position.z, zMin, zMax));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking)//Dodge stuff
                 {
                     
@@ -231,11 +246,16 @@ public class PlayerController : MonoBehaviour
                     
                    
 =======
+=======
+>>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(dodgeInput))//Dodge stuff
             animator.SetBool("dodge", true);
         else
             animator.SetBool("dodge", false);
 
+<<<<<<< HEAD
+>>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
+=======
 >>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
 
                 }
@@ -247,6 +267,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else{
                     animator.SetBool("Shoot", false);
+<<<<<<< HEAD
 <<<<<<< HEAD
                 }
         
@@ -262,6 +283,8 @@ public class PlayerController : MonoBehaviour
                 
             if(rolling){
 =======
+=======
+>>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
                 
 
 
@@ -277,6 +300,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Attack1", false);
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+<<<<<<< HEAD
 >>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
             playerHitBox.SetActive(false);
         else
@@ -308,6 +332,13 @@ public class PlayerController : MonoBehaviour
         
              
 =======
+
+
+>>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
+=======
+            playerHitBox.SetActive(false);
+        else
+            playerHitBox.SetActive(true);
 
 
 >>>>>>> 198ebeb50cd1ed9f1b59e8e98beab288d3a281b6
