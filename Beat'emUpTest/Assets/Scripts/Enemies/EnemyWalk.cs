@@ -29,7 +29,7 @@ public class EnemyWalk : MonoBehaviour
         facingLeft = true;
     }
 
-    void Update()
+    void LateUpdate()
     {
         GoToPlayer();
 
@@ -58,9 +58,9 @@ public class EnemyWalk : MonoBehaviour
         navMeshAgent.SetDestination(newTarget);
         navMeshAgent.updateRotation = false;
 
-        if (navMeshAgent.velocity.x > 0 && facingLeft)
+        if (navMeshAgent.velocity.x >= .01 && facingLeft)
             Flip();
-        else if (navMeshAgent.velocity.x < 0 && !facingLeft)
+        else if (navMeshAgent.velocity.x <= -.01 && !facingLeft)
             Flip();
 
     }
