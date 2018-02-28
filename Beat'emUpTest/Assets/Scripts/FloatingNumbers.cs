@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FloatingNumbers : MonoBehaviour 
+public class FloatingNumbers : MonoBehaviour
 {
 
-	private float moveSpeed;
-	public int scoreNum;
-	public Text displayNum;
+    public float moveSpeed;
 
-	// Use this for initialization
-	void Start () 
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update()
-	{
-		displayNum.text = "" + scoreNum;
-	}
+    //public MeshRenderer mr;
+
+
+    void Start()
+    {
+        GetComponent<TextMesh>().text = "200";
+        //mr = GetComponent<TextMesh>();
+    }
+
+    void Update()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y + (moveSpeed * Time.deltaTime), transform.position.z);
+    }
+
+
 }
+
