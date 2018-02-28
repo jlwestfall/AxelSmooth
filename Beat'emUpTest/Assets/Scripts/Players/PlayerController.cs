@@ -232,6 +232,11 @@ public class PlayerController : MonoBehaviour
 
         rigidbody.position = new Vector3(Mathf.Clamp(rigidbody.position.x, xMin, xMax), transform.position.y, Mathf.Clamp(rigidbody.position.z, zMin, zMax));
 
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(dodgeInput))//Dodge stuff
+            animator.SetBool("dodge", true);
+        else{
+            animator.SetBool("dodge", false);
+        }
 
                 if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking)//Dodge stuff
                 {
