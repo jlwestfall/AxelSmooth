@@ -7,14 +7,14 @@ public class FloatingNumbers : MonoBehaviour
 {
 
     public float moveSpeed;
+    public string popUpNumber;
 
     //public MeshRenderer mr;
 
 
     void Start()
     {
-        GetComponent<TextMesh>().text = "200";
-        //mr = GetComponent<TextMesh>();
+        GetComponent<TextMesh>().text = popUpNumber;
     }
 
     void Update()

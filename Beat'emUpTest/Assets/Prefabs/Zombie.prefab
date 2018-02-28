@@ -400,6 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 1
+  textFloat: {fileID: 1636660143378236, guid: b227a5d91e42332448510a64cc5865d7, type: 2}
 --- !u!114 &114879105799458766
 MonoBehaviour:
   m_ObjectHideFlags: 1

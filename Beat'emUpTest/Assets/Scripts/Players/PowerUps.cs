@@ -6,6 +6,7 @@ public class PowerUps : MonoBehaviour
 {
     Player player;
     public GameObject textFloat;
+    float r = 0.2f, g = 0.3f, b = 0.7f, a = 0.6f;
 
 
     void Start()
@@ -21,6 +22,9 @@ public class PowerUps : MonoBehaviour
         if (other.gameObject.tag == "Pizza" && player.curHealth < player.maxHealth)
         {
             player.curHealth += 200;
+            textFloat.GetComponent<FloatingNumbers>().popUpNumber = "+HP200";
+            textFloat.GetComponent<FloatingNumbers>().GetComponent<TextMesh>().color = new Color(0, 1, 0, 1);
+            Instantiate(textFloat, transform.position, transform.rotation);
 
 
             if (player.curHealth > player.maxHealth)
@@ -31,6 +35,8 @@ public class PowerUps : MonoBehaviour
         if (other.gameObject.tag == "Beer" && this.gameObject.name == "Player")
         {
             GameManager.gm.score.scoreP1 += 200;
+            textFloat.GetComponent<FloatingNumbers>().popUpNumber = "200";
+            textFloat.GetComponent<FloatingNumbers>().GetComponent<TextMesh>().color = new Color(1, 0.92f, 0.016f, 1);
             Instantiate(textFloat, transform.position, transform.rotation);
 
             Destroy(other.gameObject);
@@ -39,6 +45,8 @@ public class PowerUps : MonoBehaviour
         if (other.gameObject.tag == "Beer" && this.gameObject.name == "Player2")
         {
             GameManager.gm.score.scoreP2 += 200;
+            textFloat.GetComponent<FloatingNumbers>().popUpNumber = "200";
+            textFloat.GetComponent<FloatingNumbers>().GetComponent<TextMesh>().color = new Color(1, 0.92f, 0.016f, 1);
             Instantiate(textFloat, transform.position, transform.rotation);
 
             Destroy(other.gameObject);
@@ -47,6 +55,9 @@ public class PowerUps : MonoBehaviour
         if (other.gameObject.tag == "AmmoBox")
         {
             player.curPower += 100;
+            textFloat.GetComponent<FloatingNumbers>().popUpNumber = "+PWR100";
+            textFloat.GetComponent<FloatingNumbers>().GetComponent<TextMesh>().color = new Color(0, 1, 1, 1);
+            Instantiate(textFloat, transform.position, transform.rotation);
 
             if (player.curPower > player.maxPower)
                 player.curPower = player.maxPower;
