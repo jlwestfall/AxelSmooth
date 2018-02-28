@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     public KeyCode meleeInput;
     public KeyCode shootInput;
     public KeyCode dodgeInput;
+    public bool rolling;
+    public bool isAttacking;
+    public float rollTimer = 0.8f;
+    public float attackTimer = 0.8f;
     public float walkMovementSpeed;
     public float projSpeed = 10;
     public float xMin, xMax;
@@ -158,8 +162,24 @@ public class PlayerController : MonoBehaviour
             case (PlayerChoice.PlayerOne):
                 Vector3 movement = new Vector3(moveHorizontalPlayer1, 0f, moveVerticalPlayer1);
 
+
+                
+                    rigidbody.velocity = movement * movementSpeed;
+
+               
+                           if (moveHorizontalPlayer1 > 0 && !facingRight)
+                    Flip();
+                else if (moveHorizontalPlayer1 < 0 && facingRight)
+                    Flip();
+                
+
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
                     rigidbody.velocity = movement * movementSpeed;
+
+
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
+                    rigidbody.velocity = movement * movementSpeed;
+
 
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
                 {
@@ -168,13 +188,28 @@ public class PlayerController : MonoBehaviour
                     else if (moveHorizontalPlayer1 < 0 && facingRight)
                         Flip();
                 }
+
                 break;
 
             case (PlayerChoice.PlayerTwo):
 
                 Vector3 movement2 = new Vector3(moveHorizontalPlayer2, 0f, moveVerticalPlayer2);
+
+                if(!rolling)
+                    rigidbody.velocity = movement2 * movementSpeed;
+  
+                if(!rolling)
+                     if (moveHorizontalPlayer2 > 0 && !facingRight)
+                    Flip();
+                else if (moveHorizontalPlayer2 < 0 && facingRight)
+                    Flip();
+
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
                     rigidbody.velocity = movement2 * movementSpeed;
+
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+                    rigidbody.velocity = movement2 * movementSpeed;
+
 
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
                 {
@@ -182,10 +217,12 @@ public class PlayerController : MonoBehaviour
                         Flip();
                     else if (moveHorizontalPlayer2 < 0 && facingRight)
                         Flip();
+
                 }
                 break;
+                
         }
-
+    
         movementSpeed = walkMovementSpeed;
 
         if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
@@ -201,16 +238,34 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("dodge", false);
         }
 
+                if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking)//Dodge stuff
+                {
+                    
+                         animator.SetBool("dodge", true);
+                         rolling = true;
                 }
                 else
                     animator.SetBool("dodge", false);
                 
-                if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
+                if (Input.GetKeyDown(shootInput) || Input.GetKeyDown(KeyCode.B)){//Shoot
                     animator.SetBool("Shoot", true);
-                else
+                }
+                else{
                     animator.SetBool("Shoot", false);
-                
 
+                }
+        
+                if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(meleeInput) && !rolling && !isAttacking)//Keyboard
+                {
+                    animator.SetBool("Attack1", true);
+                    isAttacking = true;
+                }
+                else
+                {
+                    animator.SetBool("Attack1", false);
+                }
+                
+            if(rolling){
 
         if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
             animator.SetBool("Shoot", true);
@@ -224,18 +279,48 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Attack1", false);
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+
             playerHitBox.SetActive(false);
         else
             playerHitBox.SetActive(true);
 
+            }
 
+            if(rolling == true){
+                if(rollTimer > 0){
+                    rollTimer -= 1 * Time.deltaTime;
+                }                  
+                else
+                {
+                    rollTimer = 0.5f;
+                    rolling = false;
+                }             
+            }
+
+            if(isAttacking == true){
+                if(attackTimer > 0){
+                    attackTimer -= 1 * Time.deltaTime;
+                }                  
+                else
+                {
+                    attackTimer = 0.5f;
+                    isAttacking = false;
+                }             
+            }
+        
+        if(rolling)
+            playerHitBox.SetActive(false);
+        else
+            playerHitBox.SetActive(true);
+  
     }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PlayerHit" && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+        if (other.gameObject.tag == "PlayerHit" && !rolling)
             player.curHealth -= enemyBase.damage;
 
-        if (other.gameObject.tag == "PlayerHit" && animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+        if (other.gameObject.tag == "PlayerHit" && rolling)
             print("Dodged enemy attack!");
 
 
@@ -260,5 +345,6 @@ public class PlayerController : MonoBehaviour
         Projectile(10);
     }
 
-
 }
+    
+
