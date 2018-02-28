@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projectile;
     public GameObject projSpawner;
     public GameObject playerObj;
+    public GameObject playerColObj;
     public GameObject playerHitBox;
     public GameObject targetedEnem;
     Rigidbody rigidbody;
@@ -196,15 +197,19 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(dodgeInput))//Dodge stuff
             animator.SetBool("dodge", true);
-        else
+        else{
             animator.SetBool("dodge", false);
+        }
 
-
-        if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
-            animator.SetBool("Shoot", true);
-        else
-            animator.SetBool("Shoot", false);
-
+                }
+                else
+                    animator.SetBool("dodge", false);
+                
+                if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
+                    animator.SetBool("Shoot", true);
+                else
+                    animator.SetBool("Shoot", false);
+                
 
 
         if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
