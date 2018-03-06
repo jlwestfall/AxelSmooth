@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
         switch (levelPhase)
         {
             case (LevelPhase.PHASE1):
-                BoundsUpdate(-38f, -27f);
+                BoundsUpdate(-43f, -16f);
 
                 smoothCamera.following = false;
                 spawnManager.phase1 = true;

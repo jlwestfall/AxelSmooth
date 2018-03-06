@@ -161,11 +161,8 @@ public class PlayerController : MonoBehaviour
         {
             case (PlayerChoice.PlayerOne):
                 Vector3 movement = new Vector3(moveHorizontalPlayer1, 0f, moveVerticalPlayer1);
-
-
                 
                     rigidbody.velocity = movement * movementSpeed;
-
                
                            if (moveHorizontalPlayer1 > 0 && !facingRight)
                     Flip();
@@ -238,7 +235,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("dodge", false);
         }
 
-                if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking)//Dodge stuff
+                if (Input.GetKeyUp(KeyCode.Space) && !rolling && !isAttacking ||
+                 Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking)//Dodge stuff
                 {
                     
                          animator.SetBool("dodge", true);
@@ -255,15 +253,13 @@ public class PlayerController : MonoBehaviour
 
                 }
         
-                if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(meleeInput) && !rolling && !isAttacking)//Keyboard
+                if (Input.GetKeyUp(KeyCode.N) && !rolling && !isAttacking ||
+                 Input.GetKeyDown(meleeInput) && !rolling && !isAttacking)//Keyboard
                 {
-                    animator.SetBool("Attack1", true);
+                    animator.SetTrigger("Attack0");
                     isAttacking = true;
                 }
-                else
-                {
-                    animator.SetBool("Attack1", false);
-                }
+            
                 
             if(rolling){
 
@@ -273,7 +269,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Shoot", false);
 
 
-        if (Input.GetKeyUp(KeyCode.N) || Input.GetKeyUp(meleeInput))//Keyboard
+        if (Input.GetKey(KeyCode.N) || Input.GetKeyUp(meleeInput))//Keyboard
             animator.SetBool("Attack1", true);
         else
             animator.SetBool("Attack1", false);
