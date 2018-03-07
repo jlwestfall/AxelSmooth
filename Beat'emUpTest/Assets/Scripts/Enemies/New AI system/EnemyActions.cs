@@ -10,7 +10,7 @@ public class EnemyActions : Enemy
 	public RANGE range;
 	public ENEMYTACTIC enemyTactic;
 	public ENEMYSTATE enemyState;
-	public EnemyAnimations enemyAnimations;
+	public Animator enemyAnimator;
 	public GameObject target;
 	public Rigidbody rigidBody;
 

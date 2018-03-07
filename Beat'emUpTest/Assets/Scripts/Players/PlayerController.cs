@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour
 
                 }
         
-                if (Input.GetKeyUp(KeyCode.N) && !rolling && !isAttacking ||
+                if (Input.GetKey(KeyCode.N) && !rolling && !isAttacking ||
                  Input.GetKeyDown(meleeInput) && !rolling && !isAttacking)//Keyboard
                 {
                     animator.SetTrigger("Attack0");

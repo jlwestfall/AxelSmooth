@@ -6,6 +6,8 @@ public class PowerUps : MonoBehaviour
 {
 	Player player;
 
+	public GameObject textFloat;
+
 
 	void Start()
 	{
@@ -29,6 +31,9 @@ public class PowerUps : MonoBehaviour
 		if(other.gameObject.tag == "Beer" && this.gameObject.name == "Player")
 		{
 			GameManager.gm.score.scoreP1 += 200;
+
+			textFloat.GetComponent<FloatingNumber>().popUpNum = "+200";
+			Instantiate(textFloat, other.transform.position, other.transform.rotation);
 
 			Destroy(other.gameObject);
 		}

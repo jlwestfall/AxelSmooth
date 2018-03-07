@@ -49,10 +49,17 @@ public class EnemyAI : EnemyActions
 
     void Start()
     {
-		
+		enemyAnimator = this.GetComponent<Animator>();
+		rigidBody = this.GetComponent<Rigidbody>();
+
+		RandomizeValues();
     }
 
-    // Update is called once per frame
+	void OnEnable()
+	{
+		SetTargetToPlayers();
+	}
+
     void Update()
     {
 
