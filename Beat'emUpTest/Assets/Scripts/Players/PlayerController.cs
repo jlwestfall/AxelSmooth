@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     public KeyCode dodgeInput;
     public bool rolling;
     public bool isAttacking;
-    public float rollTimer = 0.8f;
-    public float attackTimer = 0.8f;
+    float rollTimer = 0.8f;
+    float attackTimer = 0.8f;
     public float walkMovementSpeed;
     public float projSpeed = 10;
     public float xMin, xMax;
@@ -235,8 +235,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("dodge", false);
         }
 
-                if (Input.GetKeyUp(KeyCode.Space) && !rolling && !isAttacking ||
-                 Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking)//Dodge stuff
+                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(dodgeInput)) && (!rolling && !isAttacking))//Dodge stuff
                 {
                     
                          animator.SetBool("dodge", true);
@@ -341,6 +340,10 @@ public class PlayerController : MonoBehaviour
         Projectile(10);
     }
 
-}
+    
+	}
+
+
+
     
 

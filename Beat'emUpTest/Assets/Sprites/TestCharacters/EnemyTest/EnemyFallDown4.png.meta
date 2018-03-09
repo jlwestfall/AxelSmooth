@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e133074104497bc4c9ae69e94c1cd7cb
-timeCreated: 1519799803
+timeCreated: 1520347929
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -31,7 +31,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -109,7 +109,16 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
+    outline:
+    - - {x: -9.5, y: 29}
+      - {x: -58.5, y: 21}
+      - {x: -66.5, y: 14}
+      - {x: -66.5, y: -14}
+      - {x: -54.5, y: -29}
+      - {x: 28.5, y: -29}
+      - {x: 66.5, y: -24}
+      - {x: 66.5, y: 25}
+      - {x: 64.5, y: 29}
     physicsShape: []
   spritePackingTag: 
   userData: 

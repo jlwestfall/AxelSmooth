@@ -13,21 +13,28 @@ public class EnemyActions : Enemy
 	public EnemyAnimations enemyAnimations;
 	public GameObject target;
 	public Rigidbody rigidBody;
+	Animator animator;
 
 	public bool isDead;
 	public float zHitDistance = .4f;
 	float moveThreshold = 1f;
 	public float lastAttackTime;
 	private bool attackWhilePlayerIsRolling; // If the enemy will try and attack the player while rolling.
+	public float stunTime;
+	public float stunTimer;
+	public bool isStunned;
+
 
 	void Start()
 	{
 		rigidBody = this.gameObject.GetComponent<Rigidbody>();
+		animator = gameObject.GetComponent<Animator>();
 	}
 
 	void Update()
 	{
 		MoveTo(3f,200f);
+		StunCoolDown();
 	}
 
 	public void MoveTo(float distance, float speed)
@@ -37,19 +44,19 @@ public class EnemyActions : Enemy
 
 	
 		// horizontal movement
-		if(Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold )
+		if(Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold && !isStunned)
 		{
 			// move closer on horizontal
 			Move(Vector3.right * (int)DirToDistPoint(distance), speed);
 			Debug.Log("happenX");
 		}
-		else if (Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold )
+		else if (Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold && !isStunned)
 		{
 			// move closer on horizontal
 			Move(Vector3.right * (int)DirToDistPoint(distance) * -1, speed);
 			Debug.Log("happenX");
 		}
-		else if (Mathf.Abs(DistanceToTargetZ() - distance) > moveThreshold)
+		else if (Mathf.Abs(DistanceToTargetZ() - distance) > moveThreshold && !isStunned)
 		{	
 			// move closer on vert
 			Move(Vector3.forward * DirToVertLine(), speed );
@@ -177,6 +184,19 @@ public class EnemyActions : Enemy
 		attackInterval *= Random.Range(.8f, 1.2f);
 	}
 
-
+	public void StunCoolDown(){
+		if(isStunned && stunTimer < stunTime && !animator.GetBool("StrongStun")){
+			stunTimer += 1 * Time.deltaTime;
+		}
+		if(isStunned && stunTimer < stunTime && animator.GetBool("StrongStun")){
+			stunTimer += 0.3f * Time.deltaTime;
+		}
+		if(isStunned && stunTimer >= stunTime){
+			isStunned = false;
+			stunTimer = 0;
+			animator.SetBool("Stunned", false);
+			animator.SetBool("StrongStun", false);
+		}
+	}
 	
 }
