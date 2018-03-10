@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rigidbody;
     Animator animator;
     Player player;
-    EnemyBase enemyBase;
+    Enemy enemy;
     LevelManager levelManager;
 
     float moveHorizontalPlayer1;
@@ -49,13 +49,19 @@ public class PlayerController : MonoBehaviour
         PlayerOne, PlayerTwo
     }
 
+    void Awake()
+    {
+        GameObject thisGameObject;
+        thisGameObject = this.gameObject;
+
+    }
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
-        enemyBase = new EnemyBase();
+        enemy = new Enemy();
         movementSpeed = walkMovementSpeed;
         facingRight = true;
         canMove = true;
@@ -84,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    void Update()
+    void FixedUpdate()
     {
         Move();
 
@@ -253,8 +259,8 @@ public class PlayerController : MonoBehaviour
 
                 }
         
-                if (Input.GetKey(KeyCode.N) && !rolling && !isAttacking ||
-                 Input.GetKeyDown(meleeInput) && !rolling && !isAttacking)//Keyboard
+                if (Input.GetKeyUp(KeyCode.N) && !rolling && !isAttacking ||
+                 Input.GetKeyUp(meleeInput) && !rolling && !isAttacking)//Keyboard
                 {
                     animator.SetTrigger("Attack0");
                     isAttacking = true;
@@ -268,11 +274,6 @@ public class PlayerController : MonoBehaviour
         else
             animator.SetBool("Shoot", false);
 
-
-        if (Input.GetKey(KeyCode.N) || Input.GetKeyUp(meleeInput))//Keyboard
-            animator.SetBool("Attack1", true);
-        else
-            animator.SetBool("Attack1", false);
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
 
@@ -314,7 +315,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PlayerHit" && !rolling)
-            player.curHealth -= enemyBase.damage;
+            player.curHealth -= enemy.enemyDMG;
 
         if (other.gameObject.tag == "PlayerHit" && rolling)
             print("Dodged enemy attack!");

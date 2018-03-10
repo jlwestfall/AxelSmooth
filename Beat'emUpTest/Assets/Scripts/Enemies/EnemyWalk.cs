@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyWalk : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;
-    EnemySight enemySight;
+    //EnemySight enemySight;
 
     Rigidbody rigidbody;
     Animator animator;
@@ -20,7 +20,6 @@ public class EnemyWalk : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        enemySight = GetComponent<EnemySight>();
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 

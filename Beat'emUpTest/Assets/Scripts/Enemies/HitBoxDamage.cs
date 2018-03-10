@@ -7,21 +7,21 @@ public class HitBoxDamage : MonoBehaviour
 
 		Player playerScript;
 		PlayerController playerController;
-		public GameObject enemy;
+		public GameObject enemyOBJ;
 
-		EnemyBase enemyBase;
+		Enemy enemy;
 
 
 	void Start()
 	{
 		playerScript = GameManager.gm.player.GetComponent<Player>();
 		playerController = GameManager.gm.player.GetComponent<PlayerController>();
-		enemyBase = enemy.GetComponent<EnemyBase>();
+		enemy = enemyOBJ.GetComponent<Enemy>();
 	}
 
 	void Update()
 	{
-		if(enemyBase.health <= 0)
+		if(enemy.enemyHealth <= 0)
 			Destroy(enemy.gameObject);	
 	}
 
@@ -29,7 +29,7 @@ public class HitBoxDamage : MonoBehaviour
 	{		
 		if(other.gameObject.tag == "Bullet")
 		{
-			enemyBase.health -= playerScript.projDamage;
+			enemy.enemyHealth -= playerScript.projDamage;
 			Destroy(other.gameObject);
 		}
 
@@ -44,7 +44,7 @@ public class HitBoxDamage : MonoBehaviour
 		if(other.gameObject.tag == "Hit")
 		{
 			playerController.hitEffectSwitch = true;
-			enemyBase.health -= playerScript.damage;
+			enemy.enemyHealth -= playerScript.damage;
 
 			
 		}
