@@ -51,13 +51,12 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        GameObject thisGameObject;
-        thisGameObject = this.gameObject;
-
+        
     }
 
     void Start()
     {
+        
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
@@ -67,7 +66,7 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         attackBox.SetActive(false);
 
-        Physics.gravity = new Vector3(0, -50.0f, 0);
+        //Physics.gravity = new Vector3(0, -50.0f, 0);
 
         //trying to ignore collision on with P1 && P2
         //Physics.IgnoreCollision(playerObj.GetComponent<Collider>(), GetComponent<Collider>());
@@ -78,6 +77,7 @@ public class PlayerController : MonoBehaviour
             playerObj = GameManager.gm.player;
             p1 = true;
             p2 = false;
+            transform.position = new Vector3(xMin - 12,transform.position.y, transform.position.z);
         }
 
         else if (currPlayer == PlayerChoice.PlayerTwo)
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
             p1 = false;
         }
 
+        
 
     }
     void FixedUpdate()

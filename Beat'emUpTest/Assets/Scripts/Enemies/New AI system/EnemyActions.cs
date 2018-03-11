@@ -13,7 +13,10 @@ public class EnemyActions : Enemy
     public Animator enemyAnimator;
     public GameObject target;
     public Rigidbody rigidBody;
-	public GameObject attackBox;
+    public GameObject attackBoxLeft;
+    public GameObject attackBoxRight;
+
+    GameObject currentAttackBox;
 
     public bool isDead;
     public float zHitDistance = .4f;
@@ -21,12 +24,19 @@ public class EnemyActions : Enemy
     public float lastAttackTime;
     private bool attackWhilePlayerIsRolling; // If the enemy will try and attack the player while rolling.
 
-    public bool testSwitch;
+    public bool isStunned;
+    public float stunTime;
+    public float stunTimer;
 
     void Start()
     {
         rigidBody = this.gameObject.GetComponent<Rigidbody>();
         enemyAnimator = this.GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        StunCoolDown();
     }
 
 
@@ -51,19 +61,19 @@ public class EnemyActions : Enemy
         LookAtTarget();
 
         // horizontal movement
-        if (Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold)
+        if (Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold && !isStunned)
         {
             // move closer on horizontal
             Move(Vector3.right * (int)DirToDistPoint(distance), speed);
             Debug.Log("happenX");
         }
-        else if (Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold)
+        else if (Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold && !isStunned)
         {
             // move closer on horizontal
             Move(Vector3.right * (int)DirToDistPoint(distance) * -1, speed);
             Debug.Log("happenX");
         }
-        else if (Mathf.Abs(DistanceToTargetZ() - distance) > moveThreshold)
+        else if (Mathf.Abs(DistanceToTargetZ() - distance) > moveThreshold && !isStunned)
         {
             // move closer on vert
             Move(Vector3.forward * DirToVertLine(), speed);
@@ -115,9 +125,16 @@ public class EnemyActions : Enemy
         if (target != null)
         {
             if (transform.position.x >= target.transform.position.x)
+            {
                 this.GetComponent<SpriteRenderer>().flipX = false;
+                currentAttackBox = attackBoxLeft;
+            }         
             else
+            {
                 this.GetComponent<SpriteRenderer>().flipX = true;
+                currentAttackBox = attackBoxRight;
+            }
+                
         }
     }
 
@@ -197,15 +214,46 @@ public class EnemyActions : Enemy
         attackInterval *= Random.Range(.8f, 1.2f);
     }
 
-	public void AttackBoxOn()
-	{
-		attackBox.SetActive(true);
-	}
+    public void StunCoolDown()
+    {
+        if (isStunned && stunTimer < stunTime && !enemyAnimator.GetBool("StunnedStrong"))
+        {
+            stunTimer += 1 * Time.deltaTime;
+        }
+        if (isStunned && stunTimer < stunTime && enemyAnimator.GetBool("StunnedStrong"))
+        {
+            stunTimer += 0.3f * Time.deltaTime;
+        }
+        if (isStunned && stunTimer >= stunTime)
+        {
+            isStunned = false;
+            stunTimer = 0;
+            enemyAnimator.SetBool("Stunned", false);
+            enemyAnimator.SetBool("StunnedStrong", false);
+        }
+    }
 
-	public void AttackBoxOff()
-	{
-		attackBox.SetActive(false);
-	}
+    public void IdleOn()
+    {
+        enemyTactic = ENEMYTACTIC.STANDSTILL;
+        target = null;
+    }
+
+    public void IdleOff()
+    {
+        SetTargetToPlayers();
+        enemyTactic = ENEMYTACTIC.ENGAGE;
+    }
+
+    public void AttackBoxOn()
+    {
+        currentAttackBox.SetActive(true);
+    }
+
+    public void AttackBoxOff()
+    {
+        currentAttackBox.SetActive(false);
+    }
 
 
 
