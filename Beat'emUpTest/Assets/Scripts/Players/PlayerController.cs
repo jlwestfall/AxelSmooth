@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public bool isAttacking;
     public float rollTimer = 0.8f;
     public float attackTimer = 0.8f;
+    public bool isStunned;
+    public float stunTimer = 1f;
     public float walkMovementSpeed;
     public float projSpeed = 10;
     public float xMin, xMax;
@@ -108,6 +110,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+    if(!isStunned){
         switch (currPlayer)
         {
             case (PlayerChoice.PlayerOne):
@@ -128,7 +131,9 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
-        PlayerWork();
+       
+    }
+         PlayerWork();
     }
 
     void Flip()
@@ -177,13 +182,11 @@ public class PlayerController : MonoBehaviour
                     Flip();
                 
 
-                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
+                if (!isStunned)
                     rigidbody.velocity = movement * movementSpeed;
-
-
-                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
-                    rigidbody.velocity = movement * movementSpeed;
-
+                else{
+                    rigidbody.velocity = Vector3.zero;
+                }
 
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dodge"))
                 {
@@ -199,20 +202,21 @@ public class PlayerController : MonoBehaviour
 
                 Vector3 movement2 = new Vector3(moveHorizontalPlayer2, 0f, moveVerticalPlayer2);
 
-                if(!rolling)
+                
                     rigidbody.velocity = movement2 * movementSpeed;
   
-                if(!rolling)
+                
                      if (moveHorizontalPlayer2 > 0 && !facingRight)
                     Flip();
                 else if (moveHorizontalPlayer2 < 0 && facingRight)
                     Flip();
 
-                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+                if (!isStunned)
                     rigidbody.velocity = movement2 * movementSpeed;
-
-                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
-                    rigidbody.velocity = movement2 * movementSpeed;
+                 else{
+                    rigidbody.velocity = Vector3.zero;
+                }
+               
 
 
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
@@ -229,7 +233,7 @@ public class PlayerController : MonoBehaviour
     
         movementSpeed = walkMovementSpeed;
 
-        if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
+        if ((rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0) && !isStunned)
             animator.SetBool("Walking", true);
         else
             animator.SetBool("Walking", false);
@@ -242,8 +246,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("dodge", false);
         }
 
-                if (Input.GetKeyUp(KeyCode.Space) && !rolling && !isAttacking ||
-                 Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking)//Dodge stuff
+                if (Input.GetKeyUp(KeyCode.Space) && !rolling && !isStunned && !isAttacking ||
+                 Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking && !isStunned)//Dodge stuff
                 {
                     
                          animator.SetBool("dodge", true);
@@ -252,7 +256,7 @@ public class PlayerController : MonoBehaviour
                 else
                     animator.SetBool("dodge", false);
                 
-                if (Input.GetKeyDown(shootInput) || Input.GetKeyDown(KeyCode.B)){//Shoot
+                if (Input.GetKeyDown(shootInput) && !isStunned || Input.GetKeyDown(KeyCode.B) && !isStunned){//Shoot
                     animator.SetBool("Shoot", true);
                 }
                 else{
@@ -260,8 +264,8 @@ public class PlayerController : MonoBehaviour
 
                 }
         
-                if (Input.GetKeyUp(KeyCode.N) && !rolling && !isAttacking ||
-                 Input.GetKeyUp(meleeInput) && !rolling && !isAttacking)//Keyboard
+                if (Input.GetKeyUp(KeyCode.N) && !rolling && !isStunned && !isAttacking ||
+                Input.GetKeyUp(meleeInput) && !rolling && !isAttacking & !isStunned)//Keyboard
                 {
                     animator.SetTrigger("Attack0");
                     isAttacking = true;
@@ -283,14 +287,15 @@ public class PlayerController : MonoBehaviour
             playerHitBox.SetActive(true);
 
             }
-
+        print("In roll");
             if(rolling == true){
+                
                 if(rollTimer > 0){
                     rollTimer -= 1 * Time.deltaTime;
                 }                  
                 else
                 {
-                    rollTimer = 0.5f;
+                    rollTimer = 0.8f;
                     rolling = false;
                 }             
             }
@@ -305,6 +310,21 @@ public class PlayerController : MonoBehaviour
                     isAttacking = false;
                 }             
             }
+
+            if(isStunned == true){
+                
+                animator.SetBool("Walking", false);
+                if(stunTimer > 0){
+                    stunTimer -= 1 * Time.deltaTime;
+                }                  
+                else
+                {
+                    stunTimer = 0.2f;
+                    isStunned = false;
+                }             
+            }else{
+                 animator.SetBool("Stunned", false);
+            }
         
         if(rolling)
             playerHitBox.SetActive(false);
@@ -315,11 +335,18 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PlayerHit" && !rolling)
+        bool stunned = player.GetComponent<PlayerController>().isStunned;
+        if (other.gameObject.tag == "PlayerHit" && !rolling && !stunned){
             player.curHealth -= enemy.enemyDMG;
+            player.GetComponent<PlayerController>().isStunned = true;
+        }
+            
 
         if (other.gameObject.tag == "PlayerHit" && rolling)
             print("Dodged enemy attack!");
+
+        
+            
 
 
     }

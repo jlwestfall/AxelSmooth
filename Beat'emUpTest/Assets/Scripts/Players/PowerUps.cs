@@ -53,5 +53,19 @@ public class PowerUps : MonoBehaviour
 				player.curPower = player.maxPower;
 			Destroy(other.gameObject);
 		}
+
+		if(other.gameObject.tag == "Weapon")
+		{
+			WeaponStats stats = other.GetComponent<WeaponStats>();
+
+			textFloat.GetComponent<FloatingNumber>().popUpNum = "" + stats.damage + " Dmg";
+			Instantiate(textFloat, other.transform.position, other.transform.rotation);
+			player.damage = stats.damage;
+			player.currentDurability = stats.durability;
+			player.equiped = Player.Weapons.Weapon;
+			player.curPower = 100;
+			player.powerScript.gameObject.SetActive(true);
+			Destroy(other.gameObject);
+		}
 	}
 }

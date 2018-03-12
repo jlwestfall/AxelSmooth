@@ -7,17 +7,17 @@ public class AttackBoxDetect : MonoBehaviour
     [Header("Basic Knockback")]
     [Range(0, 3)]
     public float knockBackVerticalForce;
-    [Range(0, 10)]
+    [Range(0, 3)]
     public float knockBackHorizontalForce;
     [Header("Strong Knockback")]
     [Range(0, 101)]
     public int StrongHitChance;
-    [Range(0, 4)]
+    [Range(0, 3)]
     public float strongHitMultiplier;
     Animator anim;
     AnimatorOverrideController overrideController;
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy" && other.gameObject.GetComponent<EnemyActions>().isStunned == false)
         {
@@ -36,7 +36,6 @@ public class AttackBoxDetect : MonoBehaviour
         target.GetComponent<EnemyActions>().isStunned = true;
         Rigidbody rb = target.GetComponent<Rigidbody>();
         Vector3 forceDir = Vector3.zero;
-        float positionDirection = target.transform.position.x - gameObject.transform.position.x;
         int ran = Random.Range(0, 101);
         bool strongHit = false;
 
@@ -46,14 +45,17 @@ public class AttackBoxDetect : MonoBehaviour
             strongHit = true;
         }
 
-        if (positionDirection > 0)
+        if (target.GetComponent<SpriteRenderer>().flipX)
         {
             forceDir = Vector3.right;
+            print("attacking Right");
         }
         else
         {
             forceDir = Vector3.left;
+            print("attacking Left");
         }
+        
 
         if (!strongHit)
         {

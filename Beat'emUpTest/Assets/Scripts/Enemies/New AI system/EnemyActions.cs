@@ -65,19 +65,19 @@ public class EnemyActions : Enemy
         {
             // move closer on horizontal
             Move(Vector3.right * (int)DirToDistPoint(distance), speed);
-            Debug.Log("happenX");
+            
         }
         else if (Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold && !isStunned)
         {
             // move closer on horizontal
             Move(Vector3.right * (int)DirToDistPoint(distance) * -1, speed);
-            Debug.Log("happenX");
+            
         }
         else if (Mathf.Abs(DistanceToTargetZ() - distance) > moveThreshold && !isStunned)
         {
             // move closer on vert
             Move(Vector3.forward * DirToVertLine(), speed);
-            Debug.Log("happenZ");
+            
         }
 
     }

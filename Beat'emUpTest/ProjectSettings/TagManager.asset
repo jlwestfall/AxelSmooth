@@ -19,6 +19,7 @@ TagManager:
   - SpawnPhase
   - Hitbox
   - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX

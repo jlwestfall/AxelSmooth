@@ -24,11 +24,15 @@ public class Enemy : MonoBehaviour
 
 	// Destroy event
 
-
+	void Update()
+	{
+		print(enemyHealth);
+	}
 
 
 	void Awake()
 	{
 		
 	}
+	
 }
