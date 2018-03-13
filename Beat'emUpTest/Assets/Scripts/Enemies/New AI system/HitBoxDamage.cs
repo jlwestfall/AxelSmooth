@@ -27,7 +27,12 @@ public class HitBoxDamage : MonoBehaviour
 	void Update()
 	{
 		if(enemy.enemyHealth <= 0)
-			Destroy(enemy.gameObject);	
+		{
+			GameManager.gm.Death(this.gameObject.transform.parent.gameObject, 3);
+			enemyOBJ.GetComponent<EnemyAI>().enemyTactic = ENEMYTACTIC.STANDSTILL;
+		}
+			
+				
 
 		if(isHit && hitTimer > 0){
 			hitTimer -= 1 * Time.deltaTime;

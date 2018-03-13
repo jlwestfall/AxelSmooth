@@ -46,16 +46,9 @@ public class AttackBoxDetect : MonoBehaviour
         }
 
         if (target.GetComponent<SpriteRenderer>().flipX)
-        {
             forceDir = Vector3.right;
-            print("attacking Right");
-        }
         else
-        {
-            forceDir = Vector3.left;
-            print("attacking Left");
-        }
-        
+            forceDir = Vector3.left;       
 
         if (!strongHit)
         {
@@ -63,9 +56,7 @@ public class AttackBoxDetect : MonoBehaviour
             anim.SetBool("Stunned", true);
         }
         else
-        {
             anim.SetBool("StunnedStrong", true);
-        }
 
         rb.AddForce(forceDir * horizontalForce * multiplier, ForceMode.Impulse);
         rb.AddForce(Vector3.up * verticalForce, ForceMode.Impulse);

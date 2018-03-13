@@ -45,6 +45,9 @@ public class EnemyActions : Enemy
         if (target == null)
             SetTargetToPlayers();
 
+        if(target.GetComponent<Player>().curHealth <= 0)
+            enemyTactic = ENEMYTACTIC.KEEPMEDIUMDISTANCE;
+
         if (Time.time - lastAttackTime > attackInterval)
         {
             enemyState = ENEMYSTATE.ATTACK;
@@ -53,6 +56,8 @@ public class EnemyActions : Enemy
             enemyAnimator.SetTrigger("Punch");
             lastAttackTime = Time.time;
         }
+
+        enemyAnimator.SetBool("Walk", false);
 
     }
 
@@ -176,6 +181,7 @@ public class EnemyActions : Enemy
     public void Move(Vector3 vector, float speed)
     {
         rigidBody.velocity = vector * speed * Time.deltaTime;
+        enemyAnimator.SetBool("Walk", true);
     }
 
     // wait for x seconds

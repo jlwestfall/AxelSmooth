@@ -68,13 +68,9 @@ public class EnemyAI : EnemyActions
         SetTargetToPlayers();
     }
 
-    void FixedUpdate()
+    void Update()
     {
 		AI();
-       /* if(rigidbody.velocity.x > 0 || rigidbody.velocity.y > 0 )
-            animator.SetBool("Walk", true);
-        else 
-            animator.SetBool("Walk", false); */
     }
 
     void AI()
