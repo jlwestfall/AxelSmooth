@@ -17,6 +17,8 @@ public class AttackBoxDetect : MonoBehaviour
     Animator anim;
     AnimatorOverrideController overrideController;
 
+    public GameObject explosion;
+
     void OnTriggerEnter(Collider other)
     {
         
@@ -25,8 +27,7 @@ public class AttackBoxDetect : MonoBehaviour
             anim = other.gameObject.transform.root.GetComponent<Animator>();
 
             KnockBack(knockBackVerticalForce, knockBackHorizontalForce, other.transform.root.gameObject);
-
-
+            explosion.GetComponent<PunchEffect>().sr.enabled = true;
 
         }
         print("hello");
