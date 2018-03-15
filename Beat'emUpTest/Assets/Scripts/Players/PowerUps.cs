@@ -7,7 +7,7 @@ public class PowerUps : MonoBehaviour
 	Player player;
 
 	public GameObject textFloat;
-
+	public SpriteRenderer myWeapon;
 
 	void Start()
 	{
@@ -65,6 +65,7 @@ public class PowerUps : MonoBehaviour
 			player.equiped = Player.Weapons.Weapon;
 			player.curPower = 100;
 			player.powerScript.gameObject.SetActive(true);
+			myWeapon.sprite = other.GetComponent<SpriteRenderer>().sprite;
 			Destroy(other.gameObject);
 		}
 	}

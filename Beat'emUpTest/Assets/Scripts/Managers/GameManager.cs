@@ -41,9 +41,12 @@ public class GameManager : MonoBehaviour
     IEnumerator DeathWait(GameObject dC, float timeWait)
     {
         yield return new WaitForSeconds(timeWait);
-        if(dC.tag == "Enemy")
+	if(dC != null){
+		 if(dC.tag == "Enemy")
             Destroy(dC.gameObject);
         else
             dC.gameObject.SetActive(false);
+	}
+       
     }
 }

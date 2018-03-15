@@ -16,7 +16,7 @@ public class EnemyActions : Enemy
     public GameObject attackBoxLeft;
     public GameObject attackBoxRight;
 
-    GameObject currentAttackBox;
+    public GameObject currentAttackBox;
 
     public bool isDead;
     public float zHitDistance = .4f;
@@ -253,11 +253,13 @@ public class EnemyActions : Enemy
 
     public void AttackBoxOn()
     {
+        if(currentAttackBox != null)
         currentAttackBox.SetActive(true);
     }
 
     public void AttackBoxOff()
     {
+        if(currentAttackBox != null)
         currentAttackBox.SetActive(false);
     }
 

@@ -19,11 +19,12 @@ public class AttackBoxDetect : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" && other.gameObject.GetComponent<EnemyActions>().isStunned == false)
+        
+        if (other.gameObject.transform.root.tag == "Enemy" && other.gameObject.transform.root.GetComponent<EnemyActions>().isStunned == false)
         {
-            anim = other.gameObject.GetComponent<Animator>();
+            anim = other.gameObject.transform.root.GetComponent<Animator>();
 
-            KnockBack(knockBackVerticalForce, knockBackHorizontalForce, other.gameObject);
+            KnockBack(knockBackVerticalForce, knockBackHorizontalForce, other.transform.root.gameObject);
 
 
 

@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
             insertCoinP1.SetActive(true);
         }
 
-        if (player2.active)
+        /*if (player2.active && player2 != null)
         {
             p2Panel.SetActive(true);
             insertCoinP2.SetActive(false);
@@ -44,5 +44,6 @@ public class UIManager : MonoBehaviour
             p2Panel.SetActive(false);
             insertCoinP2.SetActive(true);
         }
+        */
     }
 }

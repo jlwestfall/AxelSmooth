@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
         playerObject = GameManager.gm.player.gameObject;
         player2Object = GameManager.gm.player2.gameObject;
         playerController = GameManager.gm.player.GetComponent<PlayerController>();
-        playerTwoController = GameManager.gm.player2.GetComponent<PlayerController>();
+        //playerTwoController = GameManager.gm.player2.GetComponent<PlayerController>();
 
         PlayersInGame.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         spawnManager = GameManager.gm.spawnManager.GetComponent<SpawnManager>();
@@ -148,8 +148,8 @@ public class LevelManager : MonoBehaviour
     {
         playerController.xMin = minNum;
         playerController.xMax = maxNum;
-
-        playerTwoController.xMin = minNum;
-        playerTwoController.xMax = maxNum;
+    
+        //playerTwoController.xMin = minNum;
+        //playerTwoController.xMax = maxNum;
     }
 }

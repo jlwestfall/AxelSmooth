@@ -46,6 +46,8 @@ public class HitBoxDamage : MonoBehaviour
 				playerScript.equiped = Player.Weapons.Melee;
 				playerScript.powerScript.gameObject.SetActive(false);
 		}
+
+		
 	}
 
 	void OnTriggerExit(Collider other)				
@@ -56,11 +58,7 @@ public class HitBoxDamage : MonoBehaviour
 			Destroy(other.gameObject);
 		}
 
-		if(other.gameObject.tag == "Hit")
-		{
-			
-			playerController.hitEffectSwitch = false;
-		}
+
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -69,7 +67,6 @@ public class HitBoxDamage : MonoBehaviour
 		if(other.gameObject.tag == "Hit" && !enAction.isStunned && !isHit)
 		{
 			isHit = true;
-			playerController.hitEffectSwitch = true;
 			WeaponManage();
 
 			
