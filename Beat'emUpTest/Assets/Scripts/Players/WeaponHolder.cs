@@ -7,27 +7,36 @@ public class WeaponHolder : MonoBehaviour {
 	PlayerController playerController;
 	Player player;
 
-	public SpriteRenderer weaponSprite;
-	[Header("Weapon Swing")]
+	
+	[HideInInspector]
 	public Vector3[] swingPosRot;
-
-	[Space(2)]
-	[Header("Weapon Walking")]
+	[HideInInspector]
 	public Vector3[] walkPosRots;
-	[Space(2)]
-	[Header("Weapon Idle")]
+	[HideInInspector]
 	public Vector3[] idlePosRot;
-	[Space(2)]
+	[HideInInspector]
 	public bool idle;
+	[HideInInspector]
+	public int index;
+	[HideInInspector]
+	public int spriteIndex;
+	[HideInInspector]
+	public string stringState;
 	
-	
+	public Vector3[] currentlyEditing;
+	public Sprite[] weaponSprites;
+
+	public WeaponAnimation weaponState;
+
 
 	void Start () {
 		playerController = gameObject.transform.root.gameObject.GetComponent<PlayerController>();
 		player = gameObject.transform.root.gameObject.GetComponent<Player>();
 		
 	}
-	
+	public enum WeaponAnimation{
+		WALK, IDLE, ATTACK
+	}
 	// Update is called once per frame
 	void Update () {
 		Rigidbody rb = gameObject.transform.root.gameObject.GetComponent<Rigidbody>();
