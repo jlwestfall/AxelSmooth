@@ -27,7 +27,8 @@ public class AttackBoxDetect : MonoBehaviour
             anim = other.gameObject.transform.root.GetComponent<Animator>();
 
             KnockBack(knockBackVerticalForce, knockBackHorizontalForce, other.transform.root.gameObject);
-            explosion.GetComponent<PunchEffect>().sr.enabled = true;
+            explosion.GetComponent<PunchEffect>().ToggleExplosion();
+            //explosion.GetComponent<PunchEffect>().sr.enabled = true;
 
         }
         print("hello");

@@ -7,6 +7,7 @@ public class PunchEffect : MonoBehaviour
     [HideInInspector]
     public SpriteRenderer sr;
 
+    public GameObject explosion;
 
     void Awake()
     {
@@ -14,8 +15,16 @@ public class PunchEffect : MonoBehaviour
         sr.enabled = false;
     }
 
-    //void Update()
-    //{
-    //    sr.enabled = false;
-    //}
+    public IEnumerator ToggleSprite()
+    {
+        explosion.GetComponent<SpriteRenderer>().enabled = !explosion.GetComponent<SpriteRenderer>().enabled;
+        yield return new WaitForSeconds(0.2f);
+        explosion.GetComponent<SpriteRenderer>().enabled = false;
+
+    }
+
+    public void ToggleExplosion()
+    {
+        StartCoroutine(ToggleSprite());
+    }
 }
