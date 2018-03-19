@@ -19,15 +19,17 @@ public class HealthPower : MonoBehaviour
 
     private Player player;
 
-    private float maxHealth;
-    private float curHealth;
-    private float maxPower;
-    private float curPower;
+    public float maxHealth;
+    public float curHealth;
+    public float maxPower;
+    public float curPower;
 
 
     // Use this for initialization
     void Start()
     {
+        
+
         switch (playerChoice)
         {
             case (PlayerChoice.PLAYER1):
@@ -37,6 +39,7 @@ public class HealthPower : MonoBehaviour
                 player = GameManager.gm.player2.GetComponent<Player>();
                 break;
         }
+        player.powerScript.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

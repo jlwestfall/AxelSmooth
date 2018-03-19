@@ -6128,6 +6128,10 @@ Prefab:
       propertyPath: playerColObj
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1756755009452292, guid: 3fdccb3a59a12184caac364725d815bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fdccb3a59a12184caac364725d815bd, type: 2}
   m_IsPrefabParent: 0
