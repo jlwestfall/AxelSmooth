@@ -5,20 +5,21 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public float spawnTime = 15f;
-    [Header("Spawn Phase 1")]
-    public GameObject[] spawnPointsP1;
-    [Header("Spawn Phase 2")]
-    public GameObject[] spawnPointsP2;
-    [Header("Spawn Phase 3")]
-    public GameObject[] spawnPointsP3;
-    [Header("Spawn Phase 4")]
-    public GameObject[] spawnPointsP4;
-    [Header("Spawn Phase 5")]
-    public GameObject[] spawnPointsP5;
+    [Header("WavePoints 1")]
+    public GameObject[] wavePoints1;
+    [Header("Wave Points 2")]
+    public GameObject[] wavePoints2;
+    [Header("Wave Points 3")]
+    public GameObject[] wavePoints3;
+    [Header("Wave Points 4")]
+    public GameObject[] wavePoints4;
+    [Header("Wave Points 5")]
+    public GameObject[] wavePoints5;
 
-    public GameObject zombie;
+    public GameObject enemy;
 
-    private LevelManager levelManager;
+    GameObject player;
+    LevelManager levelManager;
 
     //Spawn Switches.
     public bool phase1, phase2, phase3, phase4, phase5 = false;
@@ -27,6 +28,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
+        player = GameManager.gm.player;
         phase1 = true;
         StartCoroutine("Phasing", spawnTime);
     }
@@ -36,45 +38,67 @@ public class SpawnManager : MonoBehaviour
     {
         if (levelManager.EnemiesInGame.Count <= 4)
         {
-            int spawnPointIndex = Random.Range(0, spawnPhase.Length);
-
-            Instantiate(zombie, spawnPhase[spawnPointIndex].transform.position, spawnPhase[spawnPointIndex].transform.rotation);
+            foreach (GameObject gO in spawnPhase)
+            {
+                Instantiate(enemy, gO.transform.position, gO.transform.rotation);
+            }
         }
     }
 
-    IEnumerator Phase1 (float spawnTime)
+    IEnumerator Phase1(float spawnTime)
     {
-        yield return new WaitUntil(()=> phase1);
+        yield return new WaitUntil(() => phase1);
 
-        while(phase1)
+        while (phase1)
         {
-            Spawn(spawnPointsP1);
+
+            //Wave 1
+            if (levelManager.EnemiesInGame.Count <= 0)
+            {
+                Spawn(wavePoints1);
+            }
+
+            //Wave 2
+            else if (levelManager.EnemiesInGame.Count <= 3 && levelManager.enemiesKilledInPhase >= 1)
+            {
+                Spawn(wavePoints2);
+                yield return new WaitForSeconds(spawnTime);
+                Spawn(wavePoints1);
+            }
+
+            //Wave 3
+            else if (levelManager.EnemiesInGame.Count <= 3 && levelManager.enemiesKilledInPhase >= 3 && player.transform.position.x >= -11)
+            {
+                Spawn(wavePoints3);
+            }
+
+            yield return new WaitForSeconds(spawnTime);
+        }
+
+    }
+
+    IEnumerator Phase2(float spawnTime)
+    {
+        yield return new WaitUntil(() => phase2);
+
+        while (phase2)
+        {
+            Spawn(wavePoints2);
             yield return new WaitForSeconds(spawnTime);
         }
     }
 
-    IEnumerator Phase2 (float spawnTime)
+    IEnumerator Phase3(float spawnTime)
     {
-        yield return new WaitUntil(()=> phase2);
+        yield return new WaitUntil(() => phase3);
 
-        while(phase2)
+        while (phase3)
         {
-            Spawn(spawnPointsP2);
+            Spawn(wavePoints3);
             yield return new WaitForSeconds(spawnTime);
         }
     }
 
-    IEnumerator Phase3 (float spawnTime)
-    {
-        yield return new WaitUntil(()=> phase3);
-
-        while(phase3)
-        {
-            Spawn(spawnPointsP2);
-            yield return new WaitForSeconds(spawnTime);
-        }
-    }
-    
 
     IEnumerator Phasing(float spawnTime)
     {

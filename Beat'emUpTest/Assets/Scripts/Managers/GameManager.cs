@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 	[Header("Spawn Manager")]
 	public GameObject spawnManager;
 	public GameObject uiManager;
+	public GameObject audioController;
+
+	public List<GameObject> enemiesEngaged = new List<GameObject>();
 	
 	void Awake()
 	{

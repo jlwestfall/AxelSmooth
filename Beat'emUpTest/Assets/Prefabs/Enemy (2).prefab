@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1154315802076186
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +78,8 @@ GameObject:
   - component: {fileID: 65246834126525450}
   - component: {fileID: 114659219333469596}
   - component: {fileID: 114533634809368378}
+  - component: {fileID: 114569132208170472}
+  - component: {fileID: 114398987594679460}
   m_Layer: 11
   m_Name: Enemy (2)
   m_TagString: Enemy
@@ -136,7 +138,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1321095245638332}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -37.78, y: 7.6, z: 38.11}
+  m_LocalPosition: {x: -17.08, y: 7.6, z: 38.11}
   m_LocalScale: {x: 3.6320522, y: 3.632051, z: 3.632051}
   m_Children:
   - {fileID: 4222641824300182}
@@ -386,8 +388,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967f62ba2d1525d4c88885f8b349f165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyOBJ: {fileID: 1321095245638332}
-  hitCoolDown: 0.4
+  hitCoolDown: 0.1
+  hitTimer: 0
+  isHit: 0
+--- !u!114 &114398987594679460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321095245638332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967f62ba2d1525d4c88885f8b349f165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitCoolDown: 0.5
   hitTimer: 0
   isHit: 0
 --- !u!114 &114533634809368378
@@ -409,9 +424,6 @@ MonoBehaviour:
   sightDistance: 50
   attackInterval: 2
   targetSpotted: 0
-  enemyName: 
-  enemyHealth: 100
-  enemyDMG: 25
   range: 0
   enemyTactic: 0
   enemyState: 0
@@ -420,6 +432,7 @@ MonoBehaviour:
   rigidBody: {fileID: 54461084857964006}
   attackBoxLeft: {fileID: 1175886812674972}
   attackBoxRight: {fileID: 1537825564632040}
+  currentAttackBox: {fileID: 0}
   isDead: 0
   zHitDistance: 0.4
   lastAttackTime: 0
@@ -428,6 +441,20 @@ MonoBehaviour:
   stunTimer: 0
   XDistance: 1.14
   YDistance: 0
+  canEngage: 0
+--- !u!114 &114569132208170472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321095245638332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20243718df9faac448ed2791476da752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  damage: 10
 --- !u!114 &114659219333469596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -447,9 +474,6 @@ MonoBehaviour:
   sightDistance: 50
   attackInterval: 2
   targetSpotted: 0
-  enemyName: 
-  enemyHealth: 100
-  enemyDMG: 25
   range: 0
   enemyTactic: 0
   enemyState: 0
@@ -458,6 +482,7 @@ MonoBehaviour:
   rigidBody: {fileID: 54461084857964006}
   attackBoxLeft: {fileID: 1175886812674972}
   attackBoxRight: {fileID: 1537825564632040}
+  currentAttackBox: {fileID: 0}
   isDead: 0
   zHitDistance: 0.4
   lastAttackTime: 0

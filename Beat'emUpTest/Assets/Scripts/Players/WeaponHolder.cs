@@ -7,14 +7,19 @@ public class WeaponHolder : MonoBehaviour {
 	PlayerController playerController;
 	Player player;
 
+	public SpriteRenderer playerSprite;
+	[Space(5)]
+	[Header("Holder Positions")]
 	
-	[HideInInspector]
 	public Vector3[] swingPosRot;
-	[HideInInspector]
+	
 	public Vector3[] walkPosRots;
-	[HideInInspector]
+	
 	public Vector3[] idlePosRot;
-	[HideInInspector]
+
+	public Vector3[] stunPosRot;
+	
+
 	public bool idle;
 	[HideInInspector]
 	public int index;
@@ -22,9 +27,14 @@ public class WeaponHolder : MonoBehaviour {
 	public int spriteIndex;
 	[HideInInspector]
 	public string stringState;
-	
+	[Space(10)]
+	[Header("Weapon Positioning Tool")]
 	public Vector3[] currentlyEditing;
 	public Sprite[] weaponSprites;
+	public Sprite[] idleSprites;
+	public Sprite[] walkSprites;
+	public Sprite[] attackSprites;
+	public Sprite[] stunSprites;
 
 	public WeaponAnimation weaponState;
 
@@ -35,7 +45,7 @@ public class WeaponHolder : MonoBehaviour {
 		
 	}
 	public enum WeaponAnimation{
-		WALK, IDLE, ATTACK
+		WALK, IDLE, ATTACK,STUN
 	}
 	// Update is called once per frame
 	void Update () {
@@ -46,12 +56,13 @@ public class WeaponHolder : MonoBehaviour {
 			print("Should be false");
 			gameObject.transform.GetChild(0).gameObject.SetActive(false);
 		}
-		if(rb.velocity == Vector3.zero && !playerController.isAttacking){
+		if(rb.velocity == Vector3.zero && !playerController.isAttacking && playerController.animator.GetBool("Stunned") == false){
 			idle = true;
 		}else{
 			idle = false;
 			
 		}
+		
 	}
 
 	public void TransformSwitch(int index){
@@ -64,16 +75,23 @@ public class WeaponHolder : MonoBehaviour {
 		if(playerController.animator.GetBool("Attack") == true){
 			currentTransformChange = swingPosRot[index];
 			currentTransformChange.z = swingPosRot[index].z;
-			print(currentTransformChange);
-		}		
-		if(playerController.animator.GetBool("Walking") == true){
-			print("Walking");
-			currentTransformChange = walkPosRots[index];
-			currentTransformChange.z = walkPosRots[index].z;
+			print("Attack State");
 		}
 		if(idle){
 			currentTransformChange = idlePosRot[index];
 			currentTransformChange.z = idlePosRot[index].z;
+			print("Idle State");
+		}else if(playerController.animator.GetBool("Walking") == true){
+			
+			currentTransformChange = walkPosRots[index];
+			currentTransformChange.z = walkPosRots[index].z;
+			print("Walk State");
+		}
+		
+		if(playerController.animator.GetBool("Stunned") == true){
+			currentTransformChange = stunPosRot[0];	
+			print("Index: " + index);
+			currentTransformChange.z = stunPosRot[0].z;
 		}
 		transform.localEulerAngles = new Vector3(0,0, currentTransformChange.z);
 

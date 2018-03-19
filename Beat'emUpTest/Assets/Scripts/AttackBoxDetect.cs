@@ -16,21 +16,35 @@ public class AttackBoxDetect : MonoBehaviour
     public float strongHitMultiplier;
     Animator anim;
     AnimatorOverrideController overrideController;
+    AudioController audioController;
+
+    GameObject hitEffect;
+
+    void Start()
+    {
+        audioController = GameManager.gm.audioController.GetComponent<AudioController>();
+        hitEffect = this.gameObject.transform.GetChild(0).gameObject;
+    }
+
 
     void OnTriggerEnter(Collider other)
     {
-        
+
         if (other.gameObject.transform.root.tag == "Enemy" && other.gameObject.transform.root.GetComponent<EnemyActions>().isStunned == false)
         {
             anim = other.gameObject.transform.root.GetComponent<Animator>();
 
             KnockBack(knockBackVerticalForce, knockBackHorizontalForce, other.transform.root.gameObject);
+            audioController.audioSource.PlayOneShot(audioController.punch, .5f);
 
-
+            ToggleSprite();
 
         }
+        else ToggleSprite();
         print("hello");
     }
+
+
 
     public void KnockBack(float verticalForce, float horizontalForce, GameObject target)
     {
@@ -49,7 +63,7 @@ public class AttackBoxDetect : MonoBehaviour
         if (target.GetComponent<SpriteRenderer>().flipX)
             forceDir = Vector3.right;
         else
-            forceDir = Vector3.left;       
+            forceDir = Vector3.left;
 
         if (!strongHit)
         {
@@ -61,7 +75,10 @@ public class AttackBoxDetect : MonoBehaviour
 
         rb.AddForce(forceDir * horizontalForce * multiplier, ForceMode.Impulse);
         rb.AddForce(Vector3.up * verticalForce, ForceMode.Impulse);
+    }
 
-
+    public void ToggleSprite()
+    {
+        hitEffect.GetComponent<SpriteRenderer>().enabled = !hitEffect.GetComponent<SpriteRenderer>().enabled;
     }
 }

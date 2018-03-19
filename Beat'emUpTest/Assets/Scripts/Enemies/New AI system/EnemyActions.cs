@@ -45,7 +45,7 @@ public class EnemyActions : Enemy
         if (target == null)
             SetTargetToPlayers();
 
-        if(target.GetComponent<Player>().curHealth <= 0)
+        if (target.GetComponent<Player>().curHealth <= 0)
             enemyTactic = ENEMYTACTIC.KEEPMEDIUMDISTANCE;
 
         if (Time.time - lastAttackTime > attackInterval)
@@ -70,19 +70,19 @@ public class EnemyActions : Enemy
         {
             // move closer on horizontal
             Move(Vector3.right * (int)DirToDistPoint(distance), speed);
-            
+
         }
         else if (Mathf.Abs(DistanceToTargetX() - distance) > moveThreshold && !isStunned)
         {
             // move closer on horizontal
             Move(Vector3.right * (int)DirToDistPoint(distance) * -1, speed);
-            
+
         }
         else if (Mathf.Abs(DistanceToTargetZ() - distance) > moveThreshold && !isStunned)
         {
             // move closer on vert
             Move(Vector3.forward * DirToVertLine(), speed);
-            
+
         }
 
     }
@@ -133,13 +133,13 @@ public class EnemyActions : Enemy
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
                 currentAttackBox = attackBoxLeft;
-            }         
+            }
             else
             {
                 this.GetComponent<SpriteRenderer>().flipX = true;
                 currentAttackBox = attackBoxRight;
             }
-                
+
         }
     }
 
@@ -253,14 +253,14 @@ public class EnemyActions : Enemy
 
     public void AttackBoxOn()
     {
-        if(currentAttackBox != null)
-        currentAttackBox.SetActive(true);
+        if (currentAttackBox != null)
+            currentAttackBox.SetActive(true);
     }
 
     public void AttackBoxOff()
     {
-        if(currentAttackBox != null)
-        currentAttackBox.SetActive(false);
+        if (currentAttackBox != null)
+            currentAttackBox.SetActive(false);
     }
 
 

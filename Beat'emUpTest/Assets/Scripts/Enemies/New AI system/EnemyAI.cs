@@ -44,6 +44,9 @@ public class EnemyAI : EnemyActions
     public float XDistance = 0;
     public float YDistance = 0;
 
+    public bool canEngage;
+    bool engageDistant;
+
     LevelManager levelManager;
     Rigidbody rigidbody;
     Animator animator;
@@ -66,11 +69,12 @@ public class EnemyAI : EnemyActions
     void OnEnable()
     {
         SetTargetToPlayers();
+        StartCoroutine("EngageDistance", 2);
     }
 
     void Update()
     {
-		AI();
+		AI();   
     }
 
     void AI()
@@ -82,7 +86,7 @@ public class EnemyAI : EnemyActions
         if (range == RANGE.ATTACKRANGE)
         {
 			if(enemyTactic == ENEMYTACTIC.ENGAGE)
-				Attack();
+                Attack();
 			if(enemyTactic == ENEMYTACTIC.KEEPSHORTDISTANCE)
 				MoveTo(closeAttackRange, walkSpeed);
 			if(enemyTactic == ENEMYTACTIC.KEEPMEDIUMDISTANCE)
@@ -142,6 +146,19 @@ public class EnemyAI : EnemyActions
                 Idle();  
         }
 
+        if(GameManager.gm.enemiesEngaged.Count >= 1 && !canEngage)
+        {
+            
+            engageDistant = true;
+        }
+            
+        else 
+        {
+            SetEnemyTactic(ENEMYTACTIC.ENGAGE);
+            engageDistant = false;
+        }
+            
+
     }
 
     private RANGE GetRangeToTarget()
@@ -176,6 +193,25 @@ public class EnemyAI : EnemyActions
     void LookForTarget()
     {
         targetSpotted = DistanceToTargetX() < sightDistance;
+    }
+
+    void OnDestroy()
+    {
+        GameManager.gm.enemiesEngaged.Remove(this.gameObject);
+    }
+
+    IEnumerator EngageDistance(float switchTime)
+    {
+        yield return new WaitUntil(() => engageDistant);
+
+        while(engageDistant)
+        {
+            SetEnemyTactic(ENEMYTACTIC.KEEPSHORTDISTANCE);
+            yield return new WaitForSeconds(switchTime);
+            SetEnemyTactic(ENEMYTACTIC.KEEPMEDIUMDISTANCE);
+            yield return new WaitForSeconds(switchTime);
+        }
+        
     }
 
 }

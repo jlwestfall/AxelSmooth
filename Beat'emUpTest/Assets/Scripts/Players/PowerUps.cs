@@ -5,9 +5,11 @@ using UnityEngine;
 public class PowerUps : MonoBehaviour 
 {
 	Player player;
+	AudioController audioController;
 
 	public GameObject textFloat;
 	public SpriteRenderer myWeapon;
+	
 
 	void Start()
 	{
@@ -16,12 +18,17 @@ public class PowerUps : MonoBehaviour
 		if(this.gameObject.name == "Player2")
 			player = GameManager.gm.player2.GetComponent<Player>();
 
+		audioController = GameManager.gm.audioController.GetComponent<AudioController>();
+
 	}
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == "Pizza" && player.curHealth < player.maxHealth)
 		{
+			audioController.audioSource.PlayOneShot(audioController.pickUp, .5f);
 			player.curHealth += 200;
+
+			textFloat.GetComponent<FloatingNumber>().popUpNum = "HP+200";
 
 			if(player.curHealth > player.maxHealth)
 				player.curHealth = player.maxHealth;
@@ -30,6 +37,7 @@ public class PowerUps : MonoBehaviour
 
 		if(other.gameObject.tag == "Beer" && this.gameObject.name == "Player")
 		{
+			audioController.audioSource.PlayOneShot(audioController.pickUp, .5f);
 			GameManager.gm.score.scoreP1 += 200;
 
 			textFloat.GetComponent<FloatingNumber>().popUpNum = "+200";

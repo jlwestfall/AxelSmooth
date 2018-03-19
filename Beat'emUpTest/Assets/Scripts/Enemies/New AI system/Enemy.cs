@@ -14,11 +14,6 @@ public class Enemy : MonoBehaviour
 	public float attackInterval = 1f;
 	public bool targetSpotted;
 
-	//Enemy stats
-	public string enemyName;
-	public int enemyHealth = 100;
-	public int enemyDMG = 10;
-
 
 
 
@@ -26,7 +21,6 @@ public class Enemy : MonoBehaviour
 
 	void Update()
 	{
-		print(enemyHealth);
 	}
 
 

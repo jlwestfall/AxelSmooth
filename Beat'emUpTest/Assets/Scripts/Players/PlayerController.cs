@@ -38,8 +38,10 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public AnimatorOverrideController animatorOverride;
     public RuntimeAnimatorController standardController;
+    AudioController audioController;
     Player player;
     Enemy enemy;
+    EnemyStats enemyStats;
     LevelManager levelManager;
     public WeaponHolder weaponUpdate;
 
@@ -53,17 +55,14 @@ public class PlayerController : MonoBehaviour
         PlayerOne, PlayerTwo
     }
 
-    void Awake()
-    {
-        
-    }
 
     void Start()
     {
-        
+
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-       
+        audioController = GameManager.gm.audioController.GetComponent<AudioController>();
+
         levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
         enemy = new Enemy();
         movementSpeed = walkMovementSpeed;
@@ -82,7 +81,7 @@ public class PlayerController : MonoBehaviour
             playerObj = GameManager.gm.player;
             p1 = true;
             p2 = false;
-            transform.position = new Vector3(xMin - 12  ,transform.position.y, transform.position.z);
+            transform.position = new Vector3(xMin - 12, transform.position.y, transform.position.z);
         }
 
         else if (currPlayer == PlayerChoice.PlayerTwo)
@@ -93,7 +92,7 @@ public class PlayerController : MonoBehaviour
             p1 = false;
         }
 
-        
+
 
     }
     void FixedUpdate()
@@ -109,10 +108,12 @@ public class PlayerController : MonoBehaviour
         if (levelManager.PlayersInGame.Count == 0)
             SceneManager.LoadScene("GameOver");
 
-        if(player.equiped == Player.Weapons.Weapon){
+        if (player.equiped == Player.Weapons.Weapon)
+        {
             animator.runtimeAnimatorController = animatorOverride;
         }
-        if(player.equiped == Player.Weapons.Melee){
+        if (player.equiped == Player.Weapons.Melee)
+        {
             animator.runtimeAnimatorController = standardController;
         }
 
@@ -120,30 +121,31 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-    if(!isStunned){
-        switch (currPlayer)
+        if (!isStunned)
         {
-            case (PlayerChoice.PlayerOne):
-                player = GameManager.gm.player.GetComponent<Player>();
-                if (animator.GetBool("dodge") == false)
-                {
-                    moveHorizontalPlayer1 = Input.GetAxis("Horizontal_P1");
-                    moveVerticalPlayer1 = Input.GetAxis("Vertical_P1");
-                }
-                break;
+            switch (currPlayer)
+            {
+                case (PlayerChoice.PlayerOne):
+                    player = GameManager.gm.player.GetComponent<Player>();
+                    if (animator.GetBool("dodge") == false)
+                    {
+                        moveHorizontalPlayer1 = Input.GetAxis("Horizontal_P1");
+                        moveVerticalPlayer1 = Input.GetAxis("Vertical_P1");
+                    }
+                    break;
 
-            case (PlayerChoice.PlayerTwo):
-                player = GameManager.gm.player2.GetComponent<Player>();
-                if (animator.GetBool("dodge") == false)
-                {
-                    moveHorizontalPlayer2 = Input.GetAxis("Horizontal_P2");
-                    moveVerticalPlayer2 = Input.GetAxis("Vertical_P2");
-                }
-                break;
+                case (PlayerChoice.PlayerTwo):
+                    player = GameManager.gm.player2.GetComponent<Player>();
+                    if (animator.GetBool("dodge") == false)
+                    {
+                        moveHorizontalPlayer2 = Input.GetAxis("Horizontal_P2");
+                        moveVerticalPlayer2 = Input.GetAxis("Vertical_P2");
+                    }
+                    break;
+            }
+
         }
-       
-    }
-         PlayerWork();
+        PlayerWork();
     }
 
     void Flip()
@@ -183,18 +185,19 @@ public class PlayerController : MonoBehaviour
         {
             case (PlayerChoice.PlayerOne):
                 Vector3 movement = new Vector3(moveHorizontalPlayer1, 0f, moveVerticalPlayer1);
-                
-                    rigidbody.velocity = movement * movementSpeed;
-               
-                           if (moveHorizontalPlayer1 > 0 && !facingRight)
+
+                rigidbody.velocity = movement * movementSpeed;
+
+                if (moveHorizontalPlayer1 > 0 && !facingRight)
                     Flip();
                 else if (moveHorizontalPlayer1 < 0 && facingRight)
                     Flip();
-                
+
 
                 if (!isStunned)
                     rigidbody.velocity = movement * movementSpeed;
-                else{
+                else
+                {
                     rigidbody.velocity = Vector3.zero;
                 }
 
@@ -212,21 +215,22 @@ public class PlayerController : MonoBehaviour
 
                 Vector3 movement2 = new Vector3(moveHorizontalPlayer2, 0f, moveVerticalPlayer2);
 
-                
-                    rigidbody.velocity = movement2 * movementSpeed;
-  
-                
-                     if (moveHorizontalPlayer2 > 0 && !facingRight)
+
+                rigidbody.velocity = movement2 * movementSpeed;
+
+
+                if (moveHorizontalPlayer2 > 0 && !facingRight)
                     Flip();
                 else if (moveHorizontalPlayer2 < 0 && facingRight)
                     Flip();
 
                 if (!isStunned)
                     rigidbody.velocity = movement2 * movementSpeed;
-                 else{
+                else
+                {
                     rigidbody.velocity = Vector3.zero;
                 }
-               
+
 
 
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
@@ -238,9 +242,9 @@ public class PlayerController : MonoBehaviour
 
                 }
                 break;
-                
+
         }
-    
+
         movementSpeed = walkMovementSpeed;
 
         if ((rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0) && !isStunned)
@@ -252,114 +256,141 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(dodgeInput))//Dodge stuff
             animator.SetBool("dodge", true);
-        else{
+        else
+        {
             animator.SetBool("dodge", false);
         }
 
-                if (Input.GetKeyUp(KeyCode.Space) && !rolling && !isStunned && !isAttacking ||
-                 Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking && !isStunned)//Dodge stuff
-                {
-                    
-                         animator.SetBool("dodge", true);
-                         rolling = true;
-                }
-                else
-                    animator.SetBool("dodge", false);
-                
-                if (Input.GetKeyDown(shootInput) && !isStunned || Input.GetKeyDown(KeyCode.B) && !isStunned){//Shoot
-                    animator.SetBool("Shoot", true);
-                }
-                else{
-                    animator.SetBool("Shoot", false);
+        if (Input.GetKeyUp(KeyCode.Space) && !rolling && !isStunned && !isAttacking ||
+         Input.GetKeyUp(dodgeInput) && !rolling && !isAttacking && !isStunned)//Dodge stuff
+        {
 
-                }
-        
-                if (Input.GetKeyUp(KeyCode.N) && !rolling && !isStunned && !isAttacking &&  animator.GetBool("Walking") == false ||
-                Input.GetKeyUp(meleeInput) && !rolling && !isAttacking & !isStunned && animator.GetBool("Walking") == false)//Keyboard
-                {
-                    animator.SetTrigger("Attack0");
-                    animator.SetBool("Attack", true);
-                    isAttacking = true;
-                }
-            
-                
-            if(rolling){
-
-        if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
-            animator.SetBool("Shoot", true);
+            animator.SetBool("dodge", true);
+            rolling = true;
+        }
         else
+            animator.SetBool("dodge", false);
+
+        if (Input.GetKeyDown(shootInput) && !isStunned || Input.GetKeyDown(KeyCode.B) && !isStunned)
+        {//Shoot
+            animator.SetBool("Shoot", true);
+        }
+        else
+        {
             animator.SetBool("Shoot", false);
 
+        }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+        if (Input.GetKeyUp(KeyCode.N) && !rolling && !isStunned && !isAttacking && animator.GetBool("Walking") == false ||
+        Input.GetKeyUp(meleeInput) && !rolling && !isAttacking & !isStunned && animator.GetBool("Walking") == false)//Keyboard
+        {
+            animator.SetTrigger("Attack0");
+            animator.SetBool("Attack", true);
+            isAttacking = true;
+        }
 
-            playerHitBox.SetActive(false);
-        else
-            playerHitBox.SetActive(true);
 
-            }
+        if (rolling)
+        {
+
+            if (Input.GetKeyUp(shootInput) || Input.GetKeyUp(KeyCode.B))//Shoot
+                animator.SetBool("Shoot", true);
+            else
+                animator.SetBool("Shoot", false);
+
+
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+
+                playerHitBox.SetActive(false);
+            else
+                playerHitBox.SetActive(true);
+
+        }
         print("In roll");
-            if(rolling == true){
-                
-                if(rollTimer > 0){
-                    rollTimer -= 1 * Time.deltaTime;
-                }                  
-                else
-                {
-                    rollTimer = 0.8f;
-                    rolling = false;
-                }             
-            }
+        if (rolling == true)
+        {
 
-            if(isAttacking == true){
-                if(attackTimer > 0){
-                    attackTimer -= 1 * Time.deltaTime;
-                }                  
-                else
-                {
-                    attackTimer = 0.5f;
-                    isAttacking = false;
-                    animator.SetBool("Attack", false);
-                }             
+            if (rollTimer > 0)
+            {
+                rollTimer -= 1 * Time.deltaTime;
             }
+            else
+            {
+                rollTimer = 0.8f;
+                rolling = false;
+            }
+        }
 
-            if(isStunned == true){
-                
-                animator.SetBool("Walking", false);
-                if(stunTimer > 0){
-                    stunTimer -= 1 * Time.deltaTime;
-                }                  
-                else
-                {
-                    stunTimer = 0.2f;
-                    isStunned = false;
-                }             
-            }else{
-                 animator.SetBool("Stunned", false);
+        if (isAttacking == true)
+        {
+            if (attackTimer > 0)
+            {
+                attackTimer -= 1 * Time.deltaTime;
             }
-        
-        if(rolling)
+            else
+            {
+                attackTimer = 0.5f;
+                isAttacking = false;
+                animator.SetBool("Attack", false);
+            }
+        }
+
+        if (isStunned == true)
+        {
+
+            animator.SetBool("Walking", false);
+            if (stunTimer > 0)
+            {
+                stunTimer -= 1 * Time.deltaTime;
+            }
+            else
+            {
+                stunTimer = 0.2f;
+                isStunned = false;
+            }
+        }
+        else
+        {
+            animator.SetBool("Stunned", false);
+        }
+
+        if (rolling)
             playerHitBox.SetActive(false);
         else
             playerHitBox.SetActive(true);
-  
+
     }
 
     void OnTriggerEnter(Collider other)
     {
         bool stunned = player.GetComponent<PlayerController>().isStunned;
-        if (other.gameObject.tag == "PlayerHit" && !rolling && !stunned){
-            player.curHealth -= enemy.enemyDMG;
+        if (other.gameObject.tag == "PlayerHit" && !rolling && !stunned)
+        {
+            EnemyAI enemyAI;
+            enemyAI = other.gameObject.transform.parent.gameObject.GetComponent<EnemyAI>();
+
+            enemyStats = other.gameObject.GetComponentInParent<EnemyStats>();
+
+            player.curHealth -= enemyStats.damage;
             player.GetComponent<PlayerController>().isStunned = true;
             animator.SetBool("Stunned", true);
+
+            audioController.audioSource.PlayOneShot(audioController.punch, .5f);
+
+            if (GameManager.gm.enemiesEngaged.Count < 1)
+            {
+                GameManager.gm.enemiesEngaged.Add(other.gameObject.transform.parent.gameObject);
+                enemyAI.canEngage = true;
+            }
+    
         }
-            
+
 
         if (other.gameObject.tag == "PlayerHit" && rolling)
             print("Dodged enemy attack!");
 
-        
-            
+
+
 
 
     }
@@ -368,13 +399,13 @@ public class PlayerController : MonoBehaviour
     {
         attackBox.SetActive(true);
 
-        
+
     }
 
     public void AttackBoxOff()
     {
         attackBox.SetActive(false);
-        
+
     }
 
     public void FireGun()
@@ -382,10 +413,11 @@ public class PlayerController : MonoBehaviour
         Projectile(10);
     }
 
-    public void WeaponHolderUpdate(int i){
+    public void WeaponHolderUpdate(int i)
+    {
         weaponUpdate.TransformSwitch(i);
     }
 
 }
-    
+
 

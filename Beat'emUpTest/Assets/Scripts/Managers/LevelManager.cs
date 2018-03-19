@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
                 spawnManager.phase1 = true;
 
                 if (enemiesKilledInPhase >= 1)
-                {
+                { /* 
                     spawnManager.phase1 = false;
                     if (EnemiesInGame.Count == 0)
                     {
@@ -83,6 +83,9 @@ public class LevelManager : MonoBehaviour
                         enemiesKilledInPhase = 0;
                         levelPhase = LevelPhase.CONTINUE;
                     }
+                    */
+
+                    /* ****Player locked in Phase 1 for Demo!!!***  */
                 }
                 break;
 
