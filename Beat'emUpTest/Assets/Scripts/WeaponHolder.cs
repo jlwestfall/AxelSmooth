@@ -72,23 +72,23 @@ public class WeaponHolder : MonoBehaviour {
 		Vector3 currentTransformChange = Vector3.zero;
 		
 
-		if(playerController.animator.GetBool("Attack") == true){
+		if(playerController.animator.GetBool("Attack") == true && index < swingPosRot.Length){
 			currentTransformChange = swingPosRot[index];
 			currentTransformChange.z = swingPosRot[index].z;
 			print("Attack State");
 		}
-		if(idle){
+		if(idle && index < idlePosRot.Length){
 			currentTransformChange = idlePosRot[index];
 			currentTransformChange.z = idlePosRot[index].z;
 			print("Idle State");
-		}else if(playerController.animator.GetBool("Walking") == true){
+		}else if(playerController.animator.GetBool("Walking") == true && index < walkPosRots.Length){
 			
 			currentTransformChange = walkPosRots[index];
 			currentTransformChange.z = walkPosRots[index].z;
 			print("Walk State");
 		}
 		
-		if(playerController.animator.GetBool("Stunned") == true){
+		if(playerController.animator.GetBool("Stunned") == true && index < stunPosRot.Length){
 			currentTransformChange = stunPosRot[0];	
 			print("Index: " + index);
 			currentTransformChange.z = stunPosRot[0].z;

@@ -40,6 +40,7 @@ public class HitBoxDamage : MonoBehaviour
             GetComponent<EnemyAI>().enemyTactic = ENEMYTACTIC.STANDSTILL;
             GetComponent<EnemyAI>().target = null;
 			levelManager.enemiesKilledInPhase++;
+        if(attackBox != null)
             attackBox.SetActive(false);
         }
 
