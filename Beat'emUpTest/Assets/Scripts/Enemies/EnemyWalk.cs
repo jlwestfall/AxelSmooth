@@ -32,7 +32,7 @@ public class EnemyWalk : MonoBehaviour
     {
         GoToPlayer();
 
-        if (navMeshAgent.velocity.x != 0 || navMeshAgent.velocity.z != 0)
+        if ((navMeshAgent.velocity.x != 0 || navMeshAgent.velocity.z != 0) && !gameObject.GetComponent<EnemyActions>().isStunned)
             animator.SetBool("Walk", true);
         else
             animator.SetBool("Walk", false);

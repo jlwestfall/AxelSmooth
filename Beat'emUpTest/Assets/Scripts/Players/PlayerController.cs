@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public bool rolling;
     public bool isAttacking;
     public float rollTimer = 0.8f;
-    public float attackTimer = 0.3f;
+    public float attackTimer = 0.5f;
     public bool isStunned;
     public float stunTimer = 1f;
     public float walkMovementSpeed;
@@ -329,7 +329,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                attackTimer = 0.3f;
+                attackTimer = 0.8f;
                 isAttacking = false;
                 animator.SetBool("Attack", false);
             }
@@ -398,14 +398,14 @@ public class PlayerController : MonoBehaviour
     public void AttackBoxOn()
     {
         attackBox.SetActive(true);
-
+        print("Turning box on!");
 
     }
 
     public void AttackBoxOff()
     {
         attackBox.SetActive(false);
-
+        print("Turning box off!");
     }
 
     public void FireGun()

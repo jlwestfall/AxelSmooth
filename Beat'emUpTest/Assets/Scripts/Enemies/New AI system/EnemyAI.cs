@@ -74,7 +74,11 @@ public class EnemyAI : EnemyActions
 
     void Update()
     {
-		AI();   
+        if(!gameObject.GetComponent<EnemyActions>().isStunned){
+            AI();
+          
+        }
+		       
     }
 
     void AI()
@@ -83,7 +87,7 @@ public class EnemyAI : EnemyActions
         range = GetRangeToTarget();
 
         //attack range
-        if (range == RANGE.ATTACKRANGE)
+        if (range == RANGE.ATTACKRANGE && !isStunned)
         {
 			if(enemyTactic == ENEMYTACTIC.ENGAGE)
                 Attack();
@@ -114,7 +118,7 @@ public class EnemyAI : EnemyActions
                 Idle();  
         }
 
-        if(range == RANGE.MIDRANGE)
+        if(range == RANGE.MIDRANGE && !isStunned)
         {
             if(enemyTactic == ENEMYTACTIC.ENGAGE) 
                 MoveTo(attackRange -.5f, walkSpeed);
@@ -132,7 +136,7 @@ public class EnemyAI : EnemyActions
 
         if(range == RANGE.FARRANGE)
         {
-            if(enemyTactic == ENEMYTACTIC.ENGAGE) 
+            if(enemyTactic == ENEMYTACTIC.ENGAGE && !isStunned) 
                 MoveTo(attackRange -.5f, walkSpeed);
             if(enemyTactic == ENEMYTACTIC.KEEPSHORTDISTANCE) 
                 MoveTo(closeAttackRange, walkSpeed);

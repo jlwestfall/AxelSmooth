@@ -180,8 +180,14 @@ public class EnemyActions : Enemy
 
     public void Move(Vector3 vector, float speed)
     {
+        if(!isStunned){
         rigidBody.velocity = vector * speed * Time.deltaTime;
         enemyAnimator.SetBool("Walk", true);
+        }else{
+            enemyAnimator.SetBool("Walk", false);
+            
+        }
+       
     }
 
     // wait for x seconds

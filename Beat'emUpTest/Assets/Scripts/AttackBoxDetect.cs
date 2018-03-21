@@ -5,14 +5,14 @@ using UnityEngine;
 public class AttackBoxDetect : MonoBehaviour
 {
     [Header("Basic Knockback")]
-    [Range(0, 3)]
+    [Range(0, 100)]
     public float knockBackVerticalForce;
-    [Range(0, 3)]
+    [Range(0, 100)]
     public float knockBackHorizontalForce;
     [Header("Strong Knockback")]
     [Range(0, 101)]
     public int StrongHitChance;
-    [Range(0, 3)]
+    [Range(0, 100)]
     public float strongHitMultiplier;
     Animator anim;
     AnimatorOverrideController overrideController;
@@ -73,7 +73,7 @@ public class AttackBoxDetect : MonoBehaviour
         else
             anim.SetBool("StunnedStrong", true);
 
-        rb.AddForce(forceDir * horizontalForce * multiplier, ForceMode.Impulse);
+        rb.AddForce(-forceDir * horizontalForce * multiplier, ForceMode.Impulse);
         rb.AddForce(Vector3.up * verticalForce, ForceMode.Impulse);
     }
 

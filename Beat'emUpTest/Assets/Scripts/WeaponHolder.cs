@@ -53,7 +53,7 @@ public class WeaponHolder : MonoBehaviour {
 		if(player.equiped == Player.Weapons.Weapon){
 			gameObject.transform.GetChild(0).gameObject.SetActive(true);
 		}else{
-			print("Should be false");
+		
 			gameObject.transform.GetChild(0).gameObject.SetActive(false);
 		}
 		if(rb.velocity == Vector3.zero && !playerController.isAttacking && playerController.animator.GetBool("Stunned") == false){
@@ -75,22 +75,22 @@ public class WeaponHolder : MonoBehaviour {
 		if(playerController.animator.GetBool("Attack") == true && index < swingPosRot.Length){
 			currentTransformChange = swingPosRot[index];
 			currentTransformChange.z = swingPosRot[index].z;
-			print("Attack State");
+	
 		}
 		if(idle && index < idlePosRot.Length){
 			currentTransformChange = idlePosRot[index];
 			currentTransformChange.z = idlePosRot[index].z;
-			print("Idle State");
+			
 		}else if(playerController.animator.GetBool("Walking") == true && index < walkPosRots.Length){
 			
 			currentTransformChange = walkPosRots[index];
 			currentTransformChange.z = walkPosRots[index].z;
-			print("Walk State");
+		
 		}
 		
 		if(playerController.animator.GetBool("Stunned") == true && index < stunPosRot.Length){
 			currentTransformChange = stunPosRot[0];	
-			print("Index: " + index);
+			
 			currentTransformChange.z = stunPosRot[0].z;
 		}
 		transform.localEulerAngles = new Vector3(0,0, currentTransformChange.z);
