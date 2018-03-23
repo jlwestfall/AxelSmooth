@@ -327,7 +327,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                attackTimer = 0.8f;
+                attackTimer = 0.5f;
                 isAttacking = false;
             }
         }

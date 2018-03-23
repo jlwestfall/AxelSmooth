@@ -203,6 +203,7 @@ public class EnemyActions : Enemy
 
     public float DistanceToTargetZ()
     {
+        target = GameObject.FindGameObjectWithTag("Player");
         if (target != null)
         {
             return Mathf.Abs(this.transform.position.z - target.transform.position.z);

@@ -18,6 +18,7 @@ public class WeaponHolder : MonoBehaviour {
 	public Vector3[] idlePosRot;
 
 	public Vector3[] stunPosRot;
+	public Vector3[] deadPosRot;
 	
 
 	public bool idle;
@@ -33,6 +34,7 @@ public class WeaponHolder : MonoBehaviour {
 	public Sprite[] weaponSprites;
 	public Sprite[] idleSprites;
 	public Sprite[] walkSprites;
+	public Sprite[] deadSprites;
 	public Sprite[] attackSprites;
 	public Sprite[] stunSprites;
 
@@ -45,7 +47,7 @@ public class WeaponHolder : MonoBehaviour {
 		
 	}
 	public enum WeaponAnimation{
-		WALK, IDLE, ATTACK,STUN
+		WALK, IDLE, ATTACK,STUN, DEATH
 	}
 	// Update is called once per frame
 	void Update () {
@@ -71,26 +73,32 @@ public class WeaponHolder : MonoBehaviour {
 		Vector3 currentTransformChange = Vector3.zero;
 		
 
-		if(playerController.animator.GetBool("Attack") == true && index < swingPosRot.Length){
+		if(playerController.isAttacking == true && index < swingPosRot.Length && playerController.gameObject.GetComponent<Player>().curHealth >0){
 			currentTransformChange = swingPosRot[index];
 			currentTransformChange.z = swingPosRot[index].z;
-			print("Attack State");
+			
 		}
 		if(idle && index < idlePosRot.Length){
 			currentTransformChange = idlePosRot[index];
 			currentTransformChange.z = idlePosRot[index].z;
-			print("Idle State");
-		}else if(playerController.animator.GetBool("Walking") == true && index < walkPosRots.Length){
+		
+		}else if(playerController.animator.GetBool("Walking") == true && index < walkPosRots.Length && playerController.gameObject.GetComponent<Player>().curHealth >0){
 			
 			currentTransformChange = walkPosRots[index];
 			currentTransformChange.z = walkPosRots[index].z;
-			print("Walk State");
+		
 		}
 		
-		if(playerController.animator.GetBool("Stunned") == true && index < stunPosRot.Length){
-			currentTransformChange = stunPosRot[0];	
-			print("Index: " + index);
-			currentTransformChange.z = stunPosRot[0].z;
+		if(playerController.isStunned == true && index < stunPosRot.Length && playerController.gameObject.GetComponent<Player>().curHealth >0){
+			currentTransformChange = stunPosRot[index];	
+			
+			currentTransformChange.z = stunPosRot[index].z;
+		}
+
+		if(playerController.gameObject.GetComponent<Player>().curHealth <= 0 && index < stunPosRot.Length){
+			currentTransformChange = deadPosRot[index];	
+		
+			currentTransformChange.z = deadPosRot[index].z;
 		}
 		transform.localEulerAngles = new Vector3(0,0, currentTransformChange.z);
 

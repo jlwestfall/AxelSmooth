@@ -13,7 +13,6 @@ public class HitBoxDamage : MonoBehaviour
     public bool isHit = false;
     public bool isDead = false;
 
-
     Enemy enemy;
     EnemyStats enemyStats;
     public GameObject attackBoxL;
@@ -28,6 +27,7 @@ public class HitBoxDamage : MonoBehaviour
         playerController = GameManager.gm.player.GetComponent<PlayerController>();
         levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
         enemyStats = this.gameObject.GetComponent<EnemyStats>();
+        
     }
 
     void Update()
@@ -82,6 +82,7 @@ public class HitBoxDamage : MonoBehaviour
     {
         if (enemyStats.health <= 0)
         {
+            
             isDead = true;
             EnemyAI enemyAI;
             enemyAI = this.gameObject.GetComponent<EnemyAI>();
@@ -95,14 +96,11 @@ public class HitBoxDamage : MonoBehaviour
             levelManager.enemiesKilledInPhase++;
             attackBoxL.SetActive(false);
             attackBoxR.SetActive(false);
-
-            Collider collider;
-            collider = this.gameObject.transform.parent.gameObject.GetComponent<Collider>();
-            Rigidbody rigidbody;
-            rigidbody = this.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>();
+            Collider myCollider = this.gameObject.GetComponent<Collider>();
+            Rigidbody rigidbody = this.gameObject.GetComponent<Rigidbody>();
 
             rigidbody.isKinematic = true;
-            collider.enabled = false;
+            myCollider.enabled = false;
 
         }
     }

@@ -4,28 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TitleScreen : MonoBehaviour 
-{
+public class FadeInOut : MonoBehaviour {
+
 	public Image faderPlane;
-	float alpha;
+	float alpha = 1;
 	public float fadeInSpeed;
-	public float faceOutSpeed;
+	public float fadeOutSpeed;
 	Color targetColor;
 	public bool fadeIn;
 	public AudioSource source;
 	float originalVolume;
-
-	void Start() {
-		alpha = 1;	
-		originalVolume = source.volume;
+	public string sceneToLoad;
+	
+	void Start () {
+		
 	}
-	void Update () 
-	{
-		if(Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Joystick1Button0) && fadeIn && alpha <= 0){
+	
+	// Update is called once per frame
+	void Update () {
+		if(GameManager.gm.player.GetComponent<Player>().curHealth <= 0){
 			fadeIn = false;
 		}
 		if(!fadeIn && alpha >= 1)
-			SceneManager.LoadScene("Main(TEST)");
+			SceneManager.LoadScene(sceneToLoad);
 
 		if(fadeIn){
 			FadeIn();
@@ -35,14 +36,15 @@ public class TitleScreen : MonoBehaviour
 		targetColor = new Color(0, 0, 0, alpha);
 		faderPlane.color = targetColor;
 	}
-	public void FadeIn(){
+
+		public void FadeIn(){
 		if(alpha > 0){
 			alpha -= fadeInSpeed * Time.deltaTime;
 		}
 	}
 	public void FadeOut(){
 		if(alpha < 1){
-			alpha += fadeInSpeed * Time.deltaTime;
+			alpha += fadeOutSpeed * Time.deltaTime;
 		}
 		source.volume = (originalVolume - alpha);
 	}

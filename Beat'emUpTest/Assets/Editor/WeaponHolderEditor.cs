@@ -34,6 +34,9 @@ public class WeaponHolderEditor : Editor {
 		if(holderScript.stunSprites.Length != holderScript.stunPosRot.Length){
 			EditorGUILayout.HelpBox("The list of stun sprites in the array does not match requirements! [Uses " + holderScript.stunPosRot.Length + " sprites]", MessageType.Warning);
 		}
+		if(holderScript.deadSprites.Length != holderScript.deadPosRot.Length){
+			EditorGUILayout.HelpBox("The list of death sprites in the array does not match requirements! [Uses " + holderScript.deadPosRot.Length + " sprites]", MessageType.Warning);
+		}
 		if(holderScript.walkSprites.Length != holderScript.walkPosRots.Length){
 			EditorGUILayout.HelpBox("The list of walk sprites in the array does not match requirements! [Uses " + holderScript.walkPosRots.Length + " sprites]", MessageType.Warning);
 		}
@@ -52,6 +55,8 @@ public class WeaponHolderEditor : Editor {
 				case(WeaponHolder.WeaponAnimation.WALK): holderScript.currentlyEditing = holderScript.walkPosRots; holderScript.stringState = "Walk";
 				break;
 				case(WeaponHolder.WeaponAnimation.STUN): holderScript.currentlyEditing = holderScript.stunPosRot; holderScript.stringState = "Stun";
+				break;
+				case(WeaponHolder.WeaponAnimation.DEATH): holderScript.currentlyEditing = holderScript.deadPosRot; holderScript.stringState = "Death";
 				break;
 			}
 
@@ -159,6 +164,12 @@ public class WeaponHolderEditor : Editor {
 																			holderScript.gameObject.transform.localPosition.y,
 																			holderScript.gameObject.transform.localEulerAngles.z);
 				break;
+
+				case(WeaponHolder.WeaponAnimation.DEATH): 
+				holderScript.deadPosRot[holderScript.index] = new Vector3(holderScript.gameObject.transform.localPosition.x, 
+																			holderScript.gameObject.transform.localPosition.y,
+																			holderScript.gameObject.transform.localEulerAngles.z);
+				break;
 			}
 				}
 		
@@ -175,6 +186,8 @@ public class WeaponHolderEditor : Editor {
 				case(WeaponHolder.WeaponAnimation.WALK): holderScript.playerSprite.sprite = holderScript.walkSprites[index];
 				break;
 				case(WeaponHolder.WeaponAnimation.STUN): holderScript.playerSprite.sprite = holderScript.stunSprites[index];
+				break;
+				case(WeaponHolder.WeaponAnimation.DEATH): holderScript.playerSprite.sprite = holderScript.deadSprites[index];
 				break;
 		}
 

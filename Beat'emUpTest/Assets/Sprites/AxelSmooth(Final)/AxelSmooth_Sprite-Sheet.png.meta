@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1bcd69d26c9de874989bffe4d64a8080
-timeCreated: 1521789488
+timeCreated: 1521817729
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -88,7 +88,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -887,7 +887,7 @@ TextureImporter:
         x: 747
         y: 52
         width: 72
-        height: 22
+        height: 59
       alignment: 9
       pivot: {x: 0.50001866, y: 0.49086276}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -901,7 +901,7 @@ TextureImporter:
         x: 864
         y: 52
         width: 75
-        height: 22
+        height: 59
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -915,7 +915,7 @@ TextureImporter:
         x: 984
         y: 52
         width: 74
-        height: 23
+        height: 59
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -929,7 +929,7 @@ TextureImporter:
         x: 1104
         y: 52
         width: 74
-        height: 20
+        height: 59
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -943,7 +943,7 @@ TextureImporter:
         x: 1224
         y: 52
         width: 74
-        height: 20
+        height: 59
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -954,10 +954,10 @@ TextureImporter:
       name: AxelSmooth_Sprite-Sheet_56
       rect:
         serializedVersion: 2
-        x: 1344
+        x: 1345
         y: 52
-        width: 74
-        height: 20
+        width: 73
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
