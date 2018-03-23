@@ -29,7 +29,8 @@ public class PowerUps : MonoBehaviour
 			player.curHealth += 200;
 
 			textFloat.GetComponent<FloatingNumber>().popUpNum = "HP+200";
-
+			Instantiate(textFloat, other.transform.position, other.transform.rotation);
+			
 			if(player.curHealth > player.maxHealth)
 				player.curHealth = player.maxHealth;
 			Destroy(other.gameObject);
@@ -48,7 +49,7 @@ public class PowerUps : MonoBehaviour
 
 		if(other.gameObject.tag == "Beer" && this.gameObject.name == "Player2")
 		{
-			GameManager.gm.score.scoreP2 += 200;
+			//0GameManager.gm.score.scoreP2 += 200;
 
 			Destroy(other.gameObject);
 		}

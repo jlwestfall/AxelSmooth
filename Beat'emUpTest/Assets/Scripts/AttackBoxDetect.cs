@@ -30,17 +30,19 @@ public class AttackBoxDetect : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.transform.root.tag == "Enemy" && other.gameObject.transform.root.GetComponent<EnemyActions>().isStunned == false)
+        if (other.gameObject.transform.root.tag == "Enemy" &&
+            other.gameObject.transform.root.GetComponent<EnemyActions>().isStunned == false &&
+            other.gameObject.transform.root.GetComponent<HitBoxDamage>().isDead == false)
         {
             anim = other.gameObject.transform.root.GetComponent<Animator>();
 
             KnockBack(knockBackVerticalForce, knockBackHorizontalForce, other.transform.root.gameObject);
             audioController.audioSource.PlayOneShot(audioController.punch, .5f);
 
-            ToggleSprite();
+            hitEffect.GetComponent<SpriteRenderer>().enabled = true;
 
         }
-        else ToggleSprite();
+        else hitEffect.GetComponent<SpriteRenderer>().enabled = false;
         print("hello");
     }
 

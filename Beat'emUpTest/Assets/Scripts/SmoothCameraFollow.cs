@@ -16,6 +16,7 @@ public class SmoothCameraFollow : MonoBehaviour
     GameObject playerFollow2;
 
     float xMin, xMax;
+    public float screenEdge;
 
     void Awake()
     {
@@ -58,7 +59,7 @@ public class SmoothCameraFollow : MonoBehaviour
             targetPos = transform.position + (targetDirection.normalized * interPVelocity * Time.deltaTime);
             transform.position = Vector3.Lerp(transform.position, targetPos + offset, 0.5f);
 
-            this.transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMin + 15, xMax -15), transform.position.y, transform.position.z);
+            this.transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMin + screenEdge, xMax - screenEdge), transform.position.y, transform.position.z);
         }
     }
 }

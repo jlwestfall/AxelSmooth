@@ -53,7 +53,6 @@ public class WeaponHolder : MonoBehaviour {
 		if(player.equiped == Player.Weapons.Weapon){
 			gameObject.transform.GetChild(0).gameObject.SetActive(true);
 		}else{
-			print("Should be false");
 			gameObject.transform.GetChild(0).gameObject.SetActive(false);
 		}
 		if(rb.velocity == Vector3.zero && !playerController.isAttacking && playerController.animator.GetBool("Stunned") == false){

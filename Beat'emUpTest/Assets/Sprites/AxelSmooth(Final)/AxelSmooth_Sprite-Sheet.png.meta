@@ -1,0 +1,972 @@
+fileFormatVersion: 2
+guid: 1bcd69d26c9de874989bffe4d64a8080
+timeCreated: 1521789488
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: AxelSmooth_Sprite-Sheet_0
+    21300002: AxelSmooth_Sprite-Sheet_1
+    21300004: AxelSmooth_Sprite-Sheet_2
+    21300006: AxelSmooth_Sprite-Sheet_3
+    21300008: AxelSmooth_Sprite-Sheet_4
+    21300010: AxelSmooth_Sprite-Sheet_5
+    21300012: AxelSmooth_Sprite-Sheet_6
+    21300014: AxelSmooth_Sprite-Sheet_7
+    21300016: AxelSmooth_Sprite-Sheet_8
+    21300018: AxelSmooth_Sprite-Sheet_9
+    21300020: AxelSmooth_Sprite-Sheet_10
+    21300022: AxelSmooth_Sprite-Sheet_11
+    21300024: AxelSmooth_Sprite-Sheet_12
+    21300026: AxelSmooth_Sprite-Sheet_13
+    21300028: AxelSmooth_Sprite-Sheet_14
+    21300030: AxelSmooth_Sprite-Sheet_15
+    21300032: AxelSmooth_Sprite-Sheet_16
+    21300034: AxelSmooth_Sprite-Sheet_17
+    21300036: AxelSmooth_Sprite-Sheet_18
+    21300038: AxelSmooth_Sprite-Sheet_19
+    21300040: AxelSmooth_Sprite-Sheet_20
+    21300042: AxelSmooth_Sprite-Sheet_21
+    21300044: AxelSmooth_Sprite-Sheet_22
+    21300046: AxelSmooth_Sprite-Sheet_23
+    21300048: AxelSmooth_Sprite-Sheet_24
+    21300050: AxelSmooth_Sprite-Sheet_25
+    21300052: AxelSmooth_Sprite-Sheet_26
+    21300054: AxelSmooth_Sprite-Sheet_27
+    21300056: AxelSmooth_Sprite-Sheet_28
+    21300058: AxelSmooth_Sprite-Sheet_29
+    21300060: AxelSmooth_Sprite-Sheet_30
+    21300062: AxelSmooth_Sprite-Sheet_31
+    21300064: AxelSmooth_Sprite-Sheet_32
+    21300066: AxelSmooth_Sprite-Sheet_33
+    21300068: AxelSmooth_Sprite-Sheet_34
+    21300070: AxelSmooth_Sprite-Sheet_35
+    21300072: AxelSmooth_Sprite-Sheet_36
+    21300074: AxelSmooth_Sprite-Sheet_37
+    21300076: AxelSmooth_Sprite-Sheet_38
+    21300078: AxelSmooth_Sprite-Sheet_39
+    21300080: AxelSmooth_Sprite-Sheet_40
+    21300082: AxelSmooth_Sprite-Sheet_41
+    21300084: AxelSmooth_Sprite-Sheet_42
+    21300086: AxelSmooth_Sprite-Sheet_43
+    21300088: AxelSmooth_Sprite-Sheet_44
+    21300090: AxelSmooth_Sprite-Sheet_45
+    21300092: AxelSmooth_Sprite-Sheet_46
+    21300094: AxelSmooth_Sprite-Sheet_47
+    21300096: AxelSmooth_Sprite-Sheet_48
+    21300098: AxelSmooth_Sprite-Sheet_49
+    21300100: AxelSmooth_Sprite-Sheet_50
+    21300102: AxelSmooth_Sprite-Sheet_51
+    21300104: AxelSmooth_Sprite-Sheet_52
+    21300106: AxelSmooth_Sprite-Sheet_53
+    21300108: AxelSmooth_Sprite-Sheet_54
+    21300110: AxelSmooth_Sprite-Sheet_55
+    21300112: AxelSmooth_Sprite-Sheet_56
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 437
+        width: 51
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 437
+        width: 52
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 437
+        width: 50
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 437
+        width: 51
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 437
+        width: 51
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 437
+        width: 51
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 339
+        width: 51
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 339
+        width: 52
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 339
+        width: 48
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 339
+        width: 50
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 339
+        width: 52
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 339
+        width: 52
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 339
+        width: 51
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 339
+        width: 45
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 339
+        width: 51
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 339
+        width: 51
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 240
+        width: 51
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 240
+        width: 71
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 240
+        width: 84
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 240
+        width: 79
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 240
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 240
+        width: 52
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 240
+        width: 50
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 240
+        width: 45
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 240
+        width: 51
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 148
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 148
+        width: 59
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 204
+        width: 15
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 148
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 148
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 208
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 148
+        width: 54
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 148
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 198
+        width: 17
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 189
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 181
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 176
+        width: 4
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 175
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 52
+        width: 53
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 52
+        width: 58
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 108
+        width: 15
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 52
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 52
+        width: 50
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 112
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 52
+        width: 47
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 102
+        width: 17
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 93
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 52
+        width: 41
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 85
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 80
+        width: 4
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 79
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 52
+        width: 72
+        height: 22
+      alignment: 9
+      pivot: {x: 0.50001866, y: 0.49086276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 52
+        width: 75
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 52
+        width: 74
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 52
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 52
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AxelSmooth_Sprite-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 52
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

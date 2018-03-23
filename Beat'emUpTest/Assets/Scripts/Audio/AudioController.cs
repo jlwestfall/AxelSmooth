@@ -15,4 +15,9 @@ public class AudioController : MonoBehaviour
 	{
 		audioSource = this.gameObject.GetComponent<AudioSource>();
 	}
+
+	public void PlayGO(int vol)
+	{
+		audioSource.PlayOneShot(pickUp, vol);
+	}
 }

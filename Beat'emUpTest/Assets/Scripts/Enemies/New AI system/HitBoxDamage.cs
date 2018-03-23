@@ -7,15 +7,18 @@ public class HitBoxDamage : MonoBehaviour
 
     Player playerScript;
     PlayerController playerController;
-	LevelManager levelManager;
+    LevelManager levelManager;
     public float hitCoolDown;
     public float hitTimer;
     public bool isHit = false;
+    public bool isDead = false;
 
 
     Enemy enemy;
     EnemyStats enemyStats;
-    GameObject attackBox;
+    public GameObject attackBoxL;
+    public GameObject attackBoxR;
+    public GameObject textFloat;
 
 
     void Start()
@@ -23,28 +26,14 @@ public class HitBoxDamage : MonoBehaviour
         hitTimer = hitCoolDown;
         playerScript = GameManager.gm.player.GetComponent<Player>();
         playerController = GameManager.gm.player.GetComponent<PlayerController>();
-        attackBox = this.gameObject.GetComponent<EnemyActions>().currentAttackBox;
-		levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
+        levelManager = GameManager.gm.levelManager.GetComponent<LevelManager>();
         enemyStats = this.gameObject.GetComponent<EnemyStats>();
     }
 
     void Update()
     {
-        if (enemyStats.health <= 0)
-        {
-			EnemyAI enemyAI;
-			enemyAI = this.gameObject.GetComponent<EnemyAI>();
-			enemyAI.currentAttackBox = null;
 
-            GameManager.gm.Death(this.gameObject, 3);
-            GetComponent<EnemyAI>().enemyTactic = ENEMYTACTIC.STANDSTILL;
-            GetComponent<EnemyAI>().target = null;
-			levelManager.enemiesKilledInPhase++;
-        if(attackBox != null)
-            attackBox.SetActive(false);
-        }
-
-
+        Death();
 
         if (isHit && hitTimer > 0)
         {
@@ -89,6 +78,35 @@ public class HitBoxDamage : MonoBehaviour
         }
     }
 
+    void Death()
+    {
+        if (enemyStats.health <= 0)
+        {
+            isDead = true;
+            EnemyAI enemyAI;
+            enemyAI = this.gameObject.GetComponent<EnemyAI>();
+            enemyAI.currentAttackBox = null;
+
+            TextFloat();
+
+            GameManager.gm.Death(this.gameObject, 3);
+            GetComponent<EnemyAI>().enemyTactic = ENEMYTACTIC.STANDSTILL;
+            GetComponent<EnemyAI>().target = null;
+            levelManager.enemiesKilledInPhase++;
+            attackBoxL.SetActive(false);
+            attackBoxR.SetActive(false);
+
+            Collider collider;
+            collider = this.gameObject.transform.parent.gameObject.GetComponent<Collider>();
+            Rigidbody rigidbody;
+            rigidbody = this.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>();
+
+            rigidbody.isKinematic = true;
+            collider.enabled = false;
+
+        }
+    }
+
     public void WeaponManage()
     {
         if (playerScript.equiped == Player.Weapons.Melee)
@@ -106,4 +124,19 @@ public class HitBoxDamage : MonoBehaviour
             }
         }
     }
+
+    public void TextFloat()
+    {
+        bool hasHappened = false;
+
+        if (hasHappened)
+        {
+            GameManager.gm.score.scoreP1 += 200;
+            textFloat.GetComponent<FloatingNumber>().popUpNum = "+200";
+            Instantiate(textFloat, this.transform.position, this.transform.rotation);
+            hasHappened = true;
+        }
+
+    }
+
 }

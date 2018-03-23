@@ -101,8 +101,7 @@ public class PlayerController : MonoBehaviour
 
         if (player.curHealth <= 0)
         {
-            levelManager.PlayersInGame.Remove(this.gameObject);
-            this.gameObject.SetActive(false);
+            animator.SetTrigger("Dead");
         }
 
         if (levelManager.PlayersInGame.Count == 0)
@@ -285,7 +284,6 @@ public class PlayerController : MonoBehaviour
         Input.GetKeyUp(meleeInput) && !rolling && !isAttacking & !isStunned && animator.GetBool("Walking") == false)//Keyboard
         {
             animator.SetTrigger("Attack0");
-            animator.SetBool("Attack", true);
             isAttacking = true;
         }
 
@@ -306,7 +304,7 @@ public class PlayerController : MonoBehaviour
                 playerHitBox.SetActive(true);
 
         }
-        
+
         if (rolling == true)
         {
 
@@ -329,9 +327,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                attackTimer = 0.3f;
+                attackTimer = 0.8f;
                 isAttacking = false;
-                animator.SetBool("Attack", false);
             }
         }
 
@@ -382,7 +379,7 @@ public class PlayerController : MonoBehaviour
                 GameManager.gm.enemiesEngaged.Add(other.gameObject.transform.parent.gameObject);
                 enemyAI.canEngage = true;
             }
-    
+
         }
 
 
@@ -416,6 +413,12 @@ public class PlayerController : MonoBehaviour
     public void WeaponHolderUpdate(int i)
     {
         weaponUpdate.TransformSwitch(i);
+    }
+
+    public void TurnPlayerOff()
+    {
+        this.gameObject.SetActive(false);
+        levelManager.PlayersInGame.Remove(this.gameObject);
     }
 
 }

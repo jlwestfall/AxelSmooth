@@ -20,15 +20,15 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: d0737de96354bb641ae93588fce45af5, type: 3}
-    - time: 0.26
+    - time: 0.16
       value: {fileID: 21300002, guid: d0737de96354bb641ae93588fce45af5, type: 3}
-    - time: 0.6
+    - time: 0.3
       value: {fileID: 21300004, guid: d0737de96354bb641ae93588fce45af5, type: 3}
-    - time: 0.88
+    - time: 0.48
       value: {fileID: 21300006, guid: d0737de96354bb641ae93588fce45af5, type: 3}
-    - time: 1.22
+    - time: 0.62
       value: {fileID: 21300008, guid: d0737de96354bb641ae93588fce45af5, type: 3}
-    - time: 1.5
+    - time: 0.8
       value: {fileID: 21300010, guid: d0737de96354bb641ae93588fce45af5, type: 3}
     attribute: m_Sprite
     path: 
@@ -60,7 +60,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.52
+    m_StopTime: 0.82
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -88,28 +88,28 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.26
+  - time: 0.14
     functionName: WeaponHolderUpdate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 0.6
+  - time: 0.3
     functionName: WeaponHolderUpdate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2
     messageOptions: 0
-  - time: 0.88
+  - time: 0.46
     functionName: WeaponHolderUpdate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 3
     messageOptions: 0
-  - time: 1.24
+  - time: 0.62
     functionName: WeaponHolderUpdate
     data: 
     objectReferenceParameter: {fileID: 0}

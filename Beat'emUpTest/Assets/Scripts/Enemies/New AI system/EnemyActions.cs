@@ -20,7 +20,7 @@ public class EnemyActions : Enemy
 
     public bool isDead;
     public float zHitDistance = .4f;
-    float moveThreshold = 1f;
+    float moveThreshold = .001f;
     public float lastAttackTime;
     private bool attackWhilePlayerIsRolling; // If the enemy will try and attack the player while rolling.
 
@@ -78,10 +78,12 @@ public class EnemyActions : Enemy
             Move(Vector3.right * (int)DirToDistPoint(distance) * -1, speed);
 
         }
-        else if (Mathf.Abs(DistanceToTargetZ() - distance) > moveThreshold && !isStunned)
+        else if (Mathf.Abs(DistanceToTargetZ() - distance) > moveThreshold)
         {
+            print("frgrg");
             // move closer on vert
             Move(Vector3.forward * DirToVertLine(), speed);
+            
 
         }
 
@@ -131,13 +133,13 @@ public class EnemyActions : Enemy
         {
             if (transform.position.x >= target.transform.position.x)
             {
-                this.GetComponent<SpriteRenderer>().flipX = false;
-                currentAttackBox = attackBoxLeft;
+                this.GetComponent<SpriteRenderer>().flipX = true;
+                currentAttackBox = attackBoxRight;
             }
             else
             {
-                this.GetComponent<SpriteRenderer>().flipX = true;
-                currentAttackBox = attackBoxRight;
+                this.GetComponent<SpriteRenderer>().flipX = false;
+                currentAttackBox = attackBoxLeft;
             }
 
         }
@@ -206,7 +208,7 @@ public class EnemyActions : Enemy
             return Mathf.Abs(this.transform.position.z - target.transform.position.z);
         }
         else
-            return -1;
+            return Mathf.Abs(this.transform.position.z - target.transform.position.z) * -1;
     }
 
     public void SetTargetToPlayers()

@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] wavePoints5;
 
     public GameObject enemy;
+    public GameObject goIcon;
 
     GameObject player;
     LevelManager levelManager;
@@ -51,9 +52,12 @@ public class SpawnManager : MonoBehaviour
 
         while (phase1)
         {
-
+            if (player.transform.position.x < -33)
+                goIcon.SetActive(true);
+            else
+                goIcon.SetActive(false);
             //Wave 1
-            if (levelManager.EnemiesInGame.Count <= 0)
+            if (levelManager.EnemiesInGame.Count <= 0 && player.transform.position.x >= -31 )
             {
                 Spawn(wavePoints1);
             }

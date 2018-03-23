@@ -74,7 +74,8 @@ public class EnemyAI : EnemyActions
 
     void Update()
     {
-		AI();   
+        if(!gameObject.GetComponent<EnemyActions>().isStunned)
+		    AI();   
     }
 
     void AI()
@@ -85,7 +86,7 @@ public class EnemyAI : EnemyActions
         //attack range
         if (range == RANGE.ATTACKRANGE)
         {
-			if(enemyTactic == ENEMYTACTIC.ENGAGE)
+			if(enemyTactic == ENEMYTACTIC.ENGAGE && !isStunned)
                 Attack();
 			if(enemyTactic == ENEMYTACTIC.KEEPSHORTDISTANCE)
 				MoveTo(closeAttackRange, walkSpeed);
@@ -98,7 +99,7 @@ public class EnemyAI : EnemyActions
         }
         
         // close range
-        if(range == RANGE.CLOSERANGE)
+        if(range == RANGE.CLOSERANGE && !isStunned)
         {
             if(enemyTactic == ENEMYTACTIC.ENGAGE) 
                 MoveTo(attackRange - 2, walkSpeed);
@@ -114,7 +115,7 @@ public class EnemyAI : EnemyActions
                 Idle();  
         }
 
-        if(range == RANGE.MIDRANGE)
+        if(range == RANGE.MIDRANGE && !isStunned)
         {
             if(enemyTactic == ENEMYTACTIC.ENGAGE) 
                 MoveTo(attackRange -.5f, walkSpeed);
@@ -132,8 +133,8 @@ public class EnemyAI : EnemyActions
 
         if(range == RANGE.FARRANGE)
         {
-            if(enemyTactic == ENEMYTACTIC.ENGAGE) 
-                MoveTo(attackRange -.5f, walkSpeed);
+            if(enemyTactic == ENEMYTACTIC.ENGAGE && !isStunned) 
+                MoveTo(attackRange, walkSpeed);
             if(enemyTactic == ENEMYTACTIC.KEEPSHORTDISTANCE) 
                 MoveTo(closeAttackRange, walkSpeed);
             if(enemyTactic == ENEMYTACTIC.KEEPMEDIUMDISTANCE) 
@@ -167,7 +168,7 @@ public class EnemyAI : EnemyActions
         YDistance = DistanceToTargetZ();
 
         //Attack range
-        if (XDistance <= attackRange && YDistance <= 1f)
+        if (XDistance <= attackRange && YDistance <= .2f)
             return RANGE.ATTACKRANGE;
 
         //Close range

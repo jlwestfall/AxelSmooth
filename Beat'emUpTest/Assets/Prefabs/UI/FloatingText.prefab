@@ -36,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621056105726562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.259, y: 12.435, z: 42.78}
-  m_LocalScale: {x: 0.6221218, y: 0.62212193, z: 0.62212193}
+  m_LocalPosition: {x: -23.54, y: 1.1702, z: 53.48257}
+  m_LocalScale: {x: 0.08492508, y: 0.08492509, z: 0.08492509}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,7 +96,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 873703eeef6452f449b4b20ed8338a51, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4284562571
+    rgba: 4282527958
 --- !u!114 &114447143510382900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7834a289dec7f9468cb7e5da93c5116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 0.5
   timeToDestroy: 1.6
   sortingLayer: UI
-  popUpNum: +200
+  popUpNum: 30 Dmg
