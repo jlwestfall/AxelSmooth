@@ -57,11 +57,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackLayer
+  - name: Far_Background
     uniqueID: 35131769
     locked: 0
-  - name: BehindBuilding
+  - name: Background
     uniqueID: 2179920907
+    locked: 0
+  - name: ForeGround
+    uniqueID: 2099899575
+    locked: 0
+  - name: Near_Foreground
+    uniqueID: 1260200211
     locked: 0
   - name: Player
     uniqueID: 417669201
